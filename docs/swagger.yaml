@@ -1,0 +1,4196 @@
+swagger: "2.0"
+info:
+  version: "1.0.0"
+  title: Api App Nội Thất Hoàng Gia
+  description: |
+    API document for app
+    # Base URL:
+    http://app-noithat.yez.vn/
+    # Status header response code:
+    500 - Internal Server Error
+    401 - Unauthorized. Token invalid
+    200 - OK
+    403 - Forbidden
+    404 - Not Found
+
+
+  # host: app-noithat.yez.vn
+# schemes:
+#    - http
+securityDefinitions:
+  Bearer:
+    type: apiKey
+    name: Authorization
+    in: header
+  Token:
+    type: apiKey
+    name: token
+    in: query
+
+tags:
+  - name: "Login"
+    description: "Auth and account"
+paths:
+  /register:
+    post:
+      tags:
+        - "Register"
+      summary: "register Phone"
+      operationId: "register phonenumber"
+      consumes:
+        - "application/x-www-form-urlencoded"
+        - "application/json"
+      produces:
+        - "application/json"
+      parameters:
+
+        - name: "name"
+          in: "formData"
+          description: "Name"
+          required: true
+          type: "string"
+
+        - name: "password"
+          in: "formData"
+          description: "password"
+          required: true
+          type: "string"
+
+        - name: "confirm_password"
+          in: "formData"
+          description: "confirm password "
+          required: true
+          type: "string"
+
+        - name: "phone"
+          in: "formData"
+          description: "Phone"
+          required: true
+          type: "string"
+
+        - name: "code_intro"
+          in: "formData"
+          description: "code intro"
+          required: false
+          type: "string"
+      responses:
+        200:
+          description: |
+            Create successful
+          examples:
+            register successful:
+              code: 200
+              data:
+                token: "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC8xMjcuMC4w..."
+                user:
+                  id_users: 1
+                  loaitk: "2"
+                  vitien: "1500000"
+                  name: "Nguyen van a"
+                  username: "admin"
+                  email: "email@gmail.com"
+                  telephone: "09898787"
+                  lastvisit: "179575"
+                  active: "1"
+                  super: "1"
+                  address: "Hn"
+                  address_t: "tp"
+                  address_h: "huyen"
+                  address_x: "xa"
+                  dc_nhaxuong: "Hà Nội ..."
+                  dc_vanphong: "Hà Nội..."
+                  yahoo: "binh_dgdg"
+                  linkfb: "dgdg"
+                  linktw: "gdgd"
+                  img: "null"
+                  avatar: "fdhgdg.jpg"
+                  cover: "null"
+                  showed: "null"
+                  linhvucsanxuat: "Mua bán"
+                  filebaogia: ""
+                  idFB: "null"
+                  idGG: "1221212"
+                  code_intro: "dgdg"
+                  code_present: "dgdgdg"
+                  point: 20
+                  service: "- '\"name\":\"cuong\"'"
+                  identity_card: "536363"
+            register fails:
+              code: 404
+              message: "fail"
+            code_present does not exists:
+              code: 427
+              message: "Code_present does not exists"
+  /login_social:
+    post:
+      tags:
+        - "Login"
+      summary: "Login Social"
+      operationId: "loginSocial"
+      consumes:
+        - "application/x-www-form-urlencoded"
+        - "application/json"
+      produces:
+        - "application/json"
+      parameters:
+
+        - name: "name"
+          in: "formData"
+          description: "Name"
+          required: true
+          type: "string"
+
+        - name: "email"
+          in: "formData"
+          description: "email"
+          required: false
+          type: "string"
+
+        - name: "phone"
+          in: "formData"
+          description: "Phone"
+          required: true
+          type: "string"
+
+        - name: "access_token"
+          in: "formData"
+          description: "access token"
+          required: true
+          type: "string"
+
+        - name: "type"
+          in: "formData"
+          description: "1: facebook | 2: google"
+          required: true
+          type: "integer"
+
+      responses:
+        201:
+          description: |
+            Create successful!
+          examples:
+            register successful:
+              code: 200
+              data:
+                token: "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC8xMjcuMC4w..."
+                user:
+                  id_users: 1
+                  loaitk: "2"
+                  vitien: "1500000"
+                  name: "Nguyen van a"
+                  username: "admin"
+                  email: "email@gmail.com"
+                  telephone: "09898787"
+                  lastvisit: "179575"
+                  active: "1"
+                  super: "1"
+                  address: "Hn"
+                  address_t: "tp"
+                  address_h: "huyen"
+                  address_x: "xa"
+                  dc_nhaxuong: "Hà Nội ..."
+                  dc_vanphong: "Hà Nội..."
+                  yahoo: "binh_dgdg"
+                  linkfb: "dgdg"
+                  linktw: "gdgd"
+                  img: "null"
+                  avatar: "fdhgdg.jpg"
+                  cover: "null"
+                  showed: "null"
+                  linhvucsanxuat: "Mua bán"
+                  filebaogia: ""
+                  idFB: "null"
+                  idGG: "1221212"
+                  code_intro: "dgdg"
+                  code_present: "dgdgdg"
+                  point: 20
+                  service: "- '\"id_service\":': 1
+                              '\"price_min\":': 10000
+                              '\"price_max\":': 10000000
+                            - '\"id_service\":': 2
+                              '\"price_min\":': 10000
+                              '\"price_max\":': 10000000
+                            "
+                  identity_card: "536363"
+  /login:
+    post:
+      tags:
+        - "Login"
+      summary: "Login"
+      operationId: "loginUser"
+      consumes:
+        - "application/x-www-form-urlencoded"
+        - "application/json"
+      produces:
+        - "application/json"
+      parameters:
+        - name: "phone"
+          in: "formData"
+          description: "Phone"
+          required: true
+          type: "string"
+        - name: "password"
+          in: "formData"
+          description: "password"
+          required: true
+          type: "string"
+      responses:
+        200:
+          description: |
+            Login successful:
+          examples:
+            Login student successful:
+              code: 200
+              data:
+                token: "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJp....."
+                user:
+                  id_users: 1
+                  loaitk: "2"
+                  vitien: "1500000"
+                  name: "Nguyen van a"
+                  username: "admin"
+                  email: "email@gmail.com"
+                  telephone: "09898787"
+                  lastvisit: "179575"
+                  active: "1"
+                  super: "1"
+                  address: "Hn"
+                  address_t: "tp"
+                  address_h: "huyen"
+                  address_x: "xa"
+                  dc_nhaxuong: "Hà Nội ..."
+                  dc_vanphong: "Hà Nội..."
+                  yahoo: "binh_dgdg"
+                  linkfb: "dgdg"
+                  linktw: "gdgd"
+                  img: "null"
+                  avatar: "fdhgdg.jpg"
+                  cover: "null"
+                  showed: "null"
+                  linhvucsanxuat: "Mua bán"
+                  filebaogia: ""
+                  idFB: "null"
+                  idGG: "1221212"
+                  code_intro: "dgdg"
+                  code_present: "dgdgdg"
+                  point: 20
+                  service: "- '\"id_service\":': 1
+                              '\"price_min\":': 10000
+                              '\"price_max\":': 10000000
+                            - '\"id_service\":': 2
+                              '\"price_min\":': 10000
+                              '\"price_max\":': 10000000
+                            "
+                  identity_card: "536363"
+
+            User not found:
+              code: 404
+              messages:
+                - "Invalid Phone or Password"
+  /check_phone:
+    post:
+      tags:
+        - "Forgot password"
+      summary: "request phone"
+      operationId: "phone"
+      consumes:
+        - "application/x-www-form-urlencoded"
+        - "application/json"
+      produces:
+        - "application/json"
+      parameters:
+        - name: "phone"
+          in: "formData"
+          description: "phone"
+          required: true
+          type: "string"
+          format: "phone"
+      responses:
+        200:
+          description: Phone number exists
+          examples:
+            Send phone successful:
+              code: 200
+              messages:
+                - "Phone numbers are in the system"
+            Check phone social:
+              code: 428
+              messages:
+                - "Phone numbers are in the system, the phone number had register with idFB | idGG"
+            Phone does not exist:
+              code: 404
+              messages:
+                - "Phone does not exists"
+  /forgot_password:
+    post:
+      tags:
+        - "Forgot password"
+      summary: "forgot-password"
+      operationId: forgotPassword"
+      consumes:
+        - "application/x-www-form-urlencoded"
+        - "application/json"
+      produces:
+        - "application/json"
+      parameters:
+        - name: "phone"
+          in: "formData"
+          description: "Phone"
+          required: true
+          type: "string"
+        - name: "password"
+          in: "formData"
+          description: "Password"
+          required: true
+          type: "string"
+          format: "password"
+      responses:
+        200:
+          description: change password successfull
+          examples:
+            Change password successfull:
+              code: 200
+              messages:
+                - "change password successfull"
+            Password can not change:
+              code: 404
+              messages:
+                - "user does not exits"
+  /check_token:
+    post:
+      tags:
+        - "CheckToken"
+      summary: "request checktoken"
+      operationId: "access_token"
+      consumes:
+        - "application/x-www-form-urlencoded"
+        - "application/json"
+      produces:
+        - "application/json"
+      parameters:
+        - name: "type"
+          in: "formData"
+          description: "1.token FB 2.token GG"
+          required: true
+          type: "string"
+          format: "type"
+        - name: "access_token"
+          in: "formData"
+          description: "access token"
+          required: true
+          type: "string"
+          format: "access_token"
+      responses:
+        200:
+          description: Access token exists
+          examples:
+            Token successful:
+              code: 200
+              data:
+                token: "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC8xMjcuMC4w..."
+                message: "Get user successfull"
+                user:
+                  id_users: 1
+                  loaitk: "2"
+                  vitien: "1500000"
+                  name: "Nguyen van a"
+                  username: "admin"
+                  email: "email@gmail.com"
+                  telephone: "09898787"
+                  lastvisit: "179575"
+                  active: "1"
+                  super: "1"
+                  address: "Hn"
+                  address_t: "tp"
+                  address_h: "huyen"
+                  address_x: "xa"
+                  dc_nhaxuong: "Hà Nội ..."
+                  dc_vanphong: "Hà Nội..."
+                  yahoo: "binh_dgdg"
+                  linkfb: "dgdg"
+                  linktw: "gdgd"
+                  img: "null"
+                  avatar: "fdhgdg.jpg"
+                  cover: "null"
+                  showed: "null"
+                  linhvucsanxuat: "Mua bán"
+                  filebaogia: ""
+                  idFB: "null"
+                  idGG: "1221212"
+                  code_intro: "dgdg"
+                  code_present: "dgdgdg"
+                  point: 20
+                  service: "- '\"id_service\":': 1
+                              '\"price_min\":': 10000
+                              '\"price_max\":': 10000000
+                            - '\"id_service\":': 2
+                              '\"price_min\":': 10000
+                              '\"price_max\":': 10000000
+                            "
+                  identity_card: "536363"
+            Token does not exist:
+              code: 404
+              message: "User does not exists"
+            Phone does not exits:
+              code : 426
+              message: "Phone does not exists"
+  /update_phone:
+    post:
+      tags:
+        - "update phone"
+      summary: "update_phone"
+      operationId: "update_phone"
+      consumes:
+        - "application/x-www-form-urlencoded"
+        - "application/json"
+      produces:
+        - "application/json"
+      parameters:
+        - name: "type"
+          in: "formData"
+          description: "typeFB | typeGG"
+          required: true
+          type: "string"
+          format: "integer"
+        - name: "access_token"
+          in: "formData"
+          description: "access_token"
+          required: true
+          type: "string"
+          format: "string"
+        - name: "phone"
+          in: "formData"
+          description: "telephone"
+          required: true
+          type: "string"
+          format: "number"
+        - name: "username"
+          in: "formData"
+          description: "telephone"
+          required: true
+          type: "string"
+          format: "number"
+      responses:
+        200:
+          description: update successful
+          examples:
+            Send phone successful:
+              code: 200
+              data:
+                token: afasfas
+                message: update user successfull
+                user: data user
+            Update fails:
+              code: 401
+              message: Update phone fail
+  /logout:
+    post:
+      security:
+        - Bearer: []
+      tags:
+        - "logout"
+      summary: "logout"
+      operationId: "logout"
+      consumes:
+        - "application/x-www-form-urlencoded"
+        - "application/json"
+      produces:
+        - "application/json"
+      responses:
+        200:
+          description: logout successful
+          examples:
+            Send phone successful:
+              code: 200
+              message: update user successfull
+  /info-user/{id_users}:
+    get:
+      security:
+        - Bearer: []
+      tags:
+        - "User"
+      summary: "Get info user"
+      operationId: ""
+      consumes:
+        - "application/x-www-form-urlencoded"
+        - "application/json"
+      parameters:
+        - in: "path"
+          name: "id_users"
+          type: integer
+          required: true
+          description: "User id"
+      produces:
+        - "application/json"
+      responses:
+        200:
+          description: Get info user
+          examples:
+            Send phone successful:
+              code: 200
+              data:
+                messages: Get info user successful
+                info_user:
+                  - id_users: 8
+                    loaitk: 0
+                    vitien: 0
+                    name: "Nguyen Tien Dung"
+                    username: "admin"
+                    email: "cphoanggia2010@gmail.com"
+                    telephone: "+84904904437"
+                    lastvisit: 1539250961
+                    active: 1
+                    super: 1
+                    address: "Hà Nam"
+                    address_t: ""
+                    address_h: ""
+                    address_x: ""
+                    dc_nhanxuong: ""
+                    dc_vanphong: ""
+                    yahoo: "binh_mczk"
+                    linkfb: ""
+                    linktw: ""
+                    image: ""
+                    avatar: ""
+                    cover: ""
+                    showed: 1
+                    linhvucsanxuat: ""
+                    filebaogia: ""
+                    idFB: ""
+                    idGG: ""
+                    exprience: ""
+                    skill: ""
+                    code_intro: ""
+                    code_present: ""
+                    date_of_birth: null,
+                    rate_feedback: 3,
+                    count_comment: 2
+  /get-province:
+    get:
+      security:
+        - Bearer: []
+      tags:
+        - "SP202"
+      summary: "Get province"
+      operationId: ""
+      consumes:
+        - "application/x-www-form-urlencoded"
+        - "application/json"
+      produces:
+        - "application/json"
+      responses:
+        200:
+          description: Get list province
+          examples:
+            Send phone successful:
+              code: 200
+              data:
+                messages: Get list province successful
+                province:
+                  - matp: 1
+                    name: "Thành phố Hà Nội"
+                    type: "Thành phố Trung ương"
+                  - matp: 2
+                    name: "Tỉnh Hà Giang"
+                    type: "Tỉnh"
+                  - matp: 4
+                    name: "Tỉnh Cao Bằng"
+                    type: "Tỉnh"
+                  - matp: 6
+                    name: "Tỉnh Bắc Cạn"
+                    type: "Tỉnh"
+  /get-district/{province_id}:
+    get:
+      security:
+        - Bearer: []
+      tags:
+        - "SP202"
+      summary: "Get district"
+      operationId: ""
+      consumes:
+        - "application/x-www-form-urlencoded"
+        - "application/json"
+      produces:
+        - "application/json"
+      parameters:
+        - in: "path"
+          name: "province_id"
+          type: integer
+          required: true
+          description: "Province id"
+      responses:
+        200:
+          description: Get list district
+          examples:
+            Send phone successful:
+              code: 200
+              data:
+                messages: Get list district successful
+                district:
+                  - maqh: 1
+                    name: "Quận Ba Đình"
+                    type: "Quận"
+                    matp: 1
+                  - maqh: 2
+                    name: "Quận Hoàn Kiếm"
+                    type: "Quận"
+                    matp: 1
+                  - maqh: 3
+                    name: "Quận Tây Hồ"
+                    type: "Quận"
+                    matp: 1
+                  - maqh: 4
+                    name: "Quận Long Biên"
+                    type: "Quận"
+                    matp: 1
+  /get-ward/{district_id}:
+    get:
+      security:
+        - Bearer: []
+      tags:
+        - "SP202"
+      summary: "Get Ward"
+      operationId: ""
+      consumes:
+        - "application/x-www-form-urlencoded"
+        - "application/json"
+      produces:
+        - "application/json"
+      parameters:
+        - in: "path"
+          name: "district_id"
+          type: integer
+          required: true
+          description: "District id"
+      responses:
+        200:
+          description: Get list ward
+          examples:
+            Send phone successful:
+              code: 200
+              data:
+                messages: Get list ward successful
+                street:
+                  - xaid: 00001
+                    name: "Phường Phúc Xá"
+                    type: "Phường"
+                    maqh: 1
+                  - xaid: 00004
+                    name: "Phường Trúc Bạch"
+                    type: "Phường"
+                    maqh: 1
+                  - xaid: 00006
+                    name: "Phường Vĩnh Phúc"
+                    type: "Phường"
+                    maqh: 1
+                  - xaid: 00007
+                    name: "Phường Cống Vị"
+                    type: "Phường"
+                    maqh: 1
+  /get-role-user:
+    get:
+      security:
+        - Bearer: []
+      tags:
+        - "SP202"
+      summary: "user role"
+      operationId: "user role"
+      consumes:
+        - "application/x-www-form-urlencoded"
+        - "application/json"
+      produces:
+        - "application/json"
+      responses:
+        200:
+          description: "Get user role info successful"
+          examples:
+            Get role user info successful:
+              code: 200
+              data:
+                message: "Get role user info successful"
+                role_user:
+                  - type: 1
+                    name: "Khách"
+                  - type: 2
+                    name: "Kiến trúc sư"
+                  - type: 3
+                    name: "Thợ"
+                  - type: 4
+                    name: "Nhà xưởng"
+                  - type: 5
+                    name: "Nhà bán sỉ"
+                  - type: 6
+                    name: "Sinh viên"
+  /get-service:
+    get:
+      security:
+        - Bearer: []
+      tags:
+        - "SP203"
+      summary: "Get service"
+      operationId: ""
+      consumes:
+        - "application/x-www-form-urlencoded"
+        - "application/json"
+      responses:
+        200:
+          description: Get list service successful
+          examples:
+            Get list service successful:
+              code: 200
+              data:
+                messages: Get list service successful
+                service:
+                  - id: 1
+                    name: "Xả kho nội thất"
+                  - id: 2
+                    name: "Dịch vụ sơn bả"
+                  - id: 3
+                    name: "Dịch vụ thạch cao"
+                  - id: 4
+                    name: "Thiết kế bản vẽ"
+                  - id: 5
+                    name: "Dịch vụ tìm thợ phụ"
+  /upgrade-account/{id_users}:
+    put:
+      security:
+        - Bearer: []
+      tags:
+        - "SP204"
+      summary: "Upgrade account"
+      operationId: "upgradeAccount"
+      consumes:
+        - "application/x-www-form-urlencoded"
+        - "application/json"
+      parameters:
+        - name: id_users
+          in: path
+          description: "id_users"
+          required: true
+          type: integer
+        - name: type
+          in: "formData"
+          description: "type"
+          required: true
+          type: integer
+        - name: "name"
+          in: "formData"
+          description: "name"
+          required: true
+          type: "string"
+        - name: "address"
+          in: "formData"
+          description: "address"
+          required: true
+          type: "string"
+        - name: "service[]"
+          in: "formData"
+          description: "Service"
+          required: true
+          type: array
+          items:
+            type: string
+        - name: "images[]"
+          in: "formData"
+          description: "Images"
+          required: true
+          type: array
+          items:
+            type: string
+        - name: "identity_card"
+          in: "formData"
+          description: "identity"
+          required: true
+          type: "number"
+      responses:
+        200:
+          description: Upgrade account successful
+          examples:
+            Upgrade account successful:
+              code: 200
+              data:
+                message: "Upgrade account successfull"
+                user:
+                  id_users: 1
+                  loaitk: "2"
+                  vitien: "1500000"
+                  name: "Nguyen van a"
+                  username: "admin"
+                  email: "email@gmail.com"
+                  telephone: "09898787"
+                  lastvisit: "179575"
+                  active: "1"
+                  super: "1"
+                  address: "Hn"
+                  address_t: "tp"
+                  address_h: "huyen"
+                  address_x: "xa"
+                  dc_nhaxuong: "Hà Nội ..."
+                  dc_vanphong: "Hà Nội..."
+                  yahoo: "binh_dgdg"
+                  linkfb: "dgdg"
+                  linktw: "gdgd"
+                  img: "null"
+                  avatar: "fdhgdg.jpg"
+                  cover: "null"
+                  showed: "null"
+                  linhvucsanxuat: "Mua bán"
+                  filebaogia: ""
+                  idFB: "null"
+                  idGG: "1221212"
+                  code_intro: "dgdg"
+                  code_present: "dgdgdg"
+                  point: 20
+                  service: "- '\"id_service\":': 1
+                              '\"price_min\":': 10000
+                              '\"price_max\":': 10000000
+                            - '\"id_service\":': 2
+                              '\"price_min\":': 10000
+                              '\"price_max\":': 10000000
+                            "
+                  identity_card: "536363"
+            User does not exists:
+              code: 404
+              message: User does not exists
+            Upgrade fails:
+              code: 422
+              message: is not required
+  /test-upgrade-user/{id_users}:
+    get:
+      security:
+        - Bearer: []
+      tags:
+        - "SP205"
+      summary: "test upgrade user"
+      operationId: ""
+      consumes:
+        - "application/x-www-form-urlencoded"
+        - "application/json"
+      parameters:
+        - name: id_users
+          in: path
+          description: id_users
+          required: true
+          type: integer
+      responses:
+        200:
+          description: Upgrade user successfull
+          examples:
+            Upgrade user successfull:
+              code: 200
+              data:
+                messages: Upgrade user successfull
+                user:
+                  id_users: "30"
+                  loaitk:
+                  vitien:
+                  name: "Vu Trong Nghiem"
+                  email: "nghiemtrongvu01806@gmail.com"
+                  telephone: "0936788061"
+                  lastvisit: "1"
+                  active: "1"
+                  super: "1"
+                  address: "ha noi"
+                  address_t:
+                  address_h:
+                  address_x:
+                  dc_nhaxuong:
+                  dc_vanphong:
+                  yahoo:
+                  linkfb:
+                  linktw:
+                  image: "image"
+                  avatar: "image"
+                  cover:
+                  showed:
+                  linhvucsanxuat:
+                  filebaogia:
+                  idFB:
+                  idGG:
+                  experience:
+                  skill:
+                  point: "1000"
+                  rate: "1"
+  /update-user/{id_users}:
+    put:
+      security:
+        - Bearer: []
+      tags:
+        - "SP205"
+      summary: "Update-user"
+      operationId: ""
+      consumes:
+        - "application/x-www-form-urlencoded"
+        - "application/json"
+      parameters:
+        - name: id_users
+          in: path
+          description: id_users
+          required: true
+          type: integer
+      responses:
+        200:
+          description: Update user info successfull
+          examples:
+            Update user successfull:
+              code: 200
+              data:
+                messages: Update user info successfull
+                user:
+                  id_users: "8"
+                  loaitk:
+                  vitien:
+                  name: "Nguyen Tien Dung"
+                  email: "cphoanggia2010@gmail.com"
+                  telephone: "+84904904437"
+                  lastvisit: "1539250961"
+                  active: "1"
+                  super: "1"
+                  address: "Ha Noi"
+                  address_t:
+                  address_h:
+                  address_x:
+                  dc_nhaxuong:
+                  dc_vanphong:
+                  yahoo: "binh_mczk"
+                  linkfb:
+                  linktw:
+                  image:
+                  avatar:
+                  cover:
+                  showed: "1"
+                  linhvucsanxuat:
+                  filebaogia:
+                  idFB:
+                  idGG:
+                  experience:
+                  skill:
+                  point: "140"
+                  rate: "0"
+  /get-right-condition:
+    get:
+      security:
+        - Bearer: []
+      tags:
+        - "SP206"
+      summary: "Get right and condition"
+      operationId: ""
+      consumes:
+        - "application/x-www-form-urlencoded"
+        - "application/json"
+      produces:
+        - "application/json"
+      responses:
+        200:
+          description: Get list right and condition
+          examples:
+            Send phone successful:
+              code: 200
+              data:
+                messages: Get list right and condition successful
+                rightConditions:
+                  - id: 1
+                    rate: 1
+                    rights: "02 tháng mức bình quân tiền lương tháng"
+                    conditions: "02 tháng mức bình quân tiền lương tháng đóng BHXH "
+                  - id: 2
+                    rate: 2
+                    rights: "Cứ mỗi năm phục vụ trong Quân đội được trợ cấp 02 tháng tiền lương cơ sở"
+                    conditions: " Ít nhất 20 phòng"
+                  - id: 3
+                    rate: 3
+                    rights: "Trước khi nhập ngũ đang học tập hoặc có giấy gọi và"
+                    conditions: "Nhân viên phải có bằng cấp đủ ở các vị trí sau:"
+                  - id: 4
+                    rate: 4
+                    rights: "Nếu cơ quan này bị giải thể thì cơ quan"
+                    conditions: "Đối với biên nhận giải quyết hồ sơ về an ninh trật tư"
+                  - id: 5
+                    rate: 5
+                    rights: "Thời gian tham gia NVQS được tính "
+                    conditions: "cầu mang theo Bản chính Biên nhận để đối chiếu"
+  /update-code-intro/{id_users}:
+    put:
+      security:
+        - Bearer: []
+      tags:
+        - "SP208"
+      summary: "Update code_intro"
+      operationId: "updateCodeIntro"
+      consumes:
+        - "application/x-www-form-urlencoded"
+        - "application/json"
+      parameters:
+        - name: id_users
+          in: path
+          description: "id_users"
+          required: true
+          type: integer
+        - name: "code_intro"
+          in: "formData"
+          description: "code intro"
+          required: true
+          type: "string"
+      responses:
+        200:
+          description: Enter Code Intro  successful
+          examples:
+            Update code intro successful:
+              code: 200
+              data:
+                message: "Update code intro successfull"
+                user:
+                  id_users: 1
+                  loaitk: "2"
+                  vitien: "1500000"
+                  name: "Nguyen van a"
+                  username: "admin"
+                  email: "email@gmail.com"
+                  telephone: "09898787"
+                  lastvisit: "179575"
+                  active: "1"
+                  super: "1"
+                  address: "Hn"
+                  address_t: "tp"
+                  address_h: "huyen"
+                  address_x: "xa"
+                  dc_nhaxuong: "Hà Nội ..."
+                  dc_vanphong: "Hà Nội..."
+                  yahoo: "binh_dgdg"
+                  linkfb: "dgdg"
+                  linktw: "gdgd"
+                  img: "null"
+                  avatar: "fdhgdg.jpg"
+                  cover: "null"
+                  showed: "null"
+                  linhvucsanxuat: "Mua bán"
+                  filebaogia: ""
+                  idFB: "null"
+                  idGG: "1221212"
+                  code_intro: "dgdg"
+                  code_present: "dgdgdg"
+                  point: 20
+                  service: "- '\"id_service\":': 1
+                              '\"price_min\":': 10000
+                              '\"price_max\":': 10000000
+                            - '\"id_service\":': 2
+                              '\"price_min\":': 10000
+                              '\"price_max\":': 10000000
+                            "
+                  identity_card: "536363"
+            Code intro does not exists:
+              code: 427
+              message: Code present does not exists
+            You already have code intro:
+              code: 435
+              message: You already have code intro
+            Enter your own code:
+              code: 430
+              message: You do not have to enter your own code
+            User does not exists:
+              code: 404
+              message: User does not exists
+            Upgrade fails:
+              code: 422
+              message: is not required
+  /get-voucher:
+    get:
+      security:
+        - Bearer: []
+      tags:
+        - "SP209"
+      summary: "Get list voucher"
+      operationId: ""
+      consumes:
+        - "application/x-www-form-urlencoded"
+        - "application/json"
+      produces:
+        - "application/json"
+      responses:
+        200:
+          description: Get list voucher
+          examples:
+            Send phone successful:
+              code: 200
+              data:
+                messages: Get list voucher successful
+                voucher:
+                  - id: 1
+                    image: "https://www.halpennygolf.com/Images/Models/Full/5772.Jpg"
+                    icon: "https://i.pinimg.com/originals/33/b8/69/33b869f90619e81763dbf1fccc896d8d.jpg"
+                    name: "Tri ân khách hàng"
+                    number_point: 5000
+                    date_start: "2019-01-01"
+                    date_end: "2019-01-15"
+                    conditions: " Thời hạn khuyến mại có hiệu lực đến thời hạn được ghi rõ trên coupon "
+                    description: "THÔNG TIN ĐỐI TÁC
+Isushi là điểm đến hấp dẫn cho các thực khách yêu thích văn hóa ẩm thực của xứ Hàn. Các món ăn tại nhà hàng giữ đúng hương vị truyền thống của xứ sở kim chi, do chính tay đầu bếp Hàn Quốc thực hiện."
+                    number_voucher: 500
+                  - id: 2
+                    image: "https://thietkekhainguyen.com/wp-content/uploads/2018/01/Nhu-Voucher-Little-spa-Final-01.jpg"
+                    icon: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQVYQHa-CfJZw53--mbSpqhvMuv-blrnoJH-srZUHyxxdrUIf6q8w"
+                    name: "Sinh nhật lần thứ 5 của Nhà hàng"
+                    number_point: 10000
+                    date_start: "2019-01-05"
+                    date_end: "2019-01-06"
+                    conditions: "Thành viên của AVIA.VN (khách hàng có đăng ký tài khoản trên AVIA.VN) có thể đăng nhập vào tài khoản và nhận coupon"
+                    description: "THÔNG TIN ĐỐI TÁC
+Isushi là điểm đến hấp dẫn cho các thực khách yêu thích văn hóa ẩm thực của xứ Hàn. Các món ăn tại nhà hàng giữ đúng hương vị truyền thống của xứ sở kim chi, do chính tay đầu bếp Hàn Quốc thực hiện."
+                    number_voucher: 1500
+                  - id: 3
+                    image: "https://innhanhtrangia.com/wp-content/uploads/2018/07/voucher-innhanhtrangia.com-6.jpg"
+                    icon: "https://sports.cbsimg.net/images/newkentuckylogo.jpg"
+                    name: "Dịp 20/10"
+                    number_point: 2000
+                    date_start: "2019-10-20"
+                    date_end: "2019-10-21"
+                    conditions: " Mỗi coupon chỉ được sử dụng một lần(trừ những coupon được phép sử dụng nhiều hơn một lần đã được ghi rõ trên coupon."
+                    description: "THÔNG TIN ĐỐI TÁC
+Isushi là điểm đến hấp dẫn cho các thực khách yêu thích văn hóa ẩm thực của xứ Hàn. Các món ăn tại nhà hàng giữ đúng hương vị truyền thống của xứ sở kim chi, do chính tay đầu bếp Hàn Quốc thực hiện."
+                    number_voucher: 100
+  /change-voucher/{id_users}:
+    put:
+      security:
+        - Bearer: []
+      tags:
+        - "SP210"
+      summary: "Change-voucher"
+      operationId: "Change-voucher"
+      consumes:
+        - "application/x-www-form-urlencoded"
+        - "application/json"
+      parameters:
+        - name: id_users
+          in: "path"
+          description: "id_users"
+          required: true
+          type: integer
+        - name: id
+          in: "formData"
+          description: "id of voucher"
+          required: true
+          type: integer
+      responses:
+        200:
+          description: Change voucher successful
+          examples:
+            Upgrade account successful:
+              code: 200
+              data:
+                message: "Congratulation! You changed the voucher successfully!"
+                voucher_code: ABC12345
+                voucher:
+                  id: 5,
+                  image: https://www.halpennygolf.com/Images/Models/Full/5772.Jpg
+                  name: abc
+                  number_point: 1000,
+                  date_start: 2019-01-01 00:00:00
+                  date_end: 2018-11-28 00:00:00
+                  conditions: Thời hạn khuyến mại có hiệu lực đến thời hạn được ghi rõ trên coupon
+                  number_voucher: 3,
+                  remaining_voucher: 3,
+                  created_at: 2018-11-22 00:00:00
+            Change voucher fails:
+              code: 429
+              data:
+                message: "You do not have enough points to change the Voucher!"
+            Expiry date of voucher:
+              code: 434
+              data:
+                message: "Expiry date of voucher!"
+            Voucher has expired:
+              code: 432
+              data:
+                message: "Number of expired vouchers!"
+            Code has expired:
+              code: 433
+              data:
+                message: "Number of expired codes!"
+  /upload/image:
+    post:
+      tags:
+        - "Upload"
+      security:
+        - Bearer: []
+      summary: "Upload image"
+      operationId: "upload-image"
+      consumes:
+        - "multipart/form-data"
+      produces:
+        - "application/json"
+      parameters:
+        - name: "images[]"
+          in: "formData"
+          description: "List images file. File Extension: jpg,png,gif,bmp,tif"
+          required: true
+          type: array
+          items:
+            type: string
+            format: binary
+      responses:
+        200:
+          description: "Upload successful"
+          examples:
+            application/json:
+              code: 200
+              data:
+                images:
+                  - URL 1
+                  - URL 2
+                  - URL 3
+        422:
+          description: "Validate Fails"
+          examples:
+            application/json:
+              code: 422
+              messsages:
+                - Message error 1
+                - Message error 1
+        400:
+          description: "Upload fails"
+          examples:
+            application/json:
+              code: 400
+              messages:
+                - "Upload fails"
+  /upload/video:
+    post:
+      tags:
+        - "Upload"
+      security:
+        - Bearer: []
+      summary: "Upload video"
+      operationId: "upload-video"
+      consumes:
+        - "multipart/form-data"
+      produces:
+        - "application/json"
+      parameters:
+        - name: "videos[]"
+          in: "formData"
+          description: "List video file. File Extension: mp4"
+          required: true
+          type: array
+          items:
+            type: string
+            format: binary
+      responses:
+        200:
+          description: "Upload successful"
+          examples:
+            application/json:
+              code: 200
+              data:
+                video:
+                  - Video.mp4
+        400:
+          description: "Upload fails"
+          examples:
+            application/json:
+              code: 400
+              messages:
+                - "Upload fails"
+  /history-voucher/{id_users}:
+    get:
+      security:
+        - Bearer: []
+      tags:
+        - "SP209"
+      summary: "Get list history voucher"
+      operationId: ""
+      consumes:
+        - "application/x-www-form-urlencoded"
+        - "application/json"
+      produces:
+        - "application/json"
+      parameters:
+        - in: "path"
+          name: "id_users"
+          type: integer
+          required: true
+          description: "User id"
+      responses:
+        200:
+          description: Get list history voucher
+          examples:
+            Send phone successful:
+              code: 200
+              data:
+                messages: Get list history voucher successful
+                code_vouchers:
+                  - id: 1
+                    code: "AA123ABF5BF"
+                    status: 1
+                    user_id: 30
+                    voucher_app_id: 1
+                    date_used: "2019-01-15"
+                    created_at: "2019-01-15"
+                    updated_at: "2019-01-15"
+                    voucher:
+                      - id: 1
+                        image: "https://www.halpennygolf.com/Images/Models/Full/5772.Jpg"
+                        icon: "https://i.pinimg.com/originals/33/b8/69/33b869f90619e81763dbf1fccc896d8d.jpg"
+                        name: "Tri ân khách hàng"
+                        number_point: 5000
+                        date_start: "2019-01-15"
+                        date_end: "2019-01-15"
+                        conditions: "Thời hạn khuyến mại có hiệu lực đến thời hạn được ghi rõ trên coupon\""
+                        description: "THÔNG TIN ĐỐI TÁC
+                                      Isushi là điểm đến hấp dẫn cho các thực khách yêu thích văn hóa ẩm thực của xứ Hàn. Các món ăn tại nhà hàng giữ đúng hương vị truyền thống của xứ sở kim chi, do chính tay đầu bếp Hàn Quốc thực hiện."
+                        remaining_voucher: 17
+                  - id: 2
+                    code: "DNM3ABF5BF"
+                    status: 0
+                    user_id: 30
+                    voucher_app_id: 1
+                    date_used: "2019-02-15"
+                    created_at: "2019-02-15"
+                    updated_at: "2019-02-15"
+                    voucher:
+                      - id: 1
+                        image: "https://www.halpennygolf.com/Images/Models/Full/5772.Jpg"
+                        icon: "https://i.pinimg.com/originals/33/b8/69/33b869f90619e81763dbf1fccc896d8d.jpg"
+                        name: "Tri ân khách hàng"
+                        number_point: 5000
+                        date_start: "2019-01-15"
+                        date_end: "2019-01-15"
+                        conditions: "Thời hạn khuyến mại có hiệu lực đến thời hạn được ghi rõ trên coupon\""
+                        description: "THÔNG TIN ĐỐI TÁC
+                                      Isushi là điểm đến hấp dẫn cho các thực khách yêu thích văn hóa ẩm thực của xứ Hàn. Các món ăn tại nhà hàng giữ đúng hương vị truyền thống của xứ sở kim chi, do chính tay đầu bếp Hàn Quốc thực hiện."
+                        remaining_voucher: 17
+                  - id: 3
+                    code: "BDKCNDJ23KK"
+                    status: 0
+                    user_id: 30
+                    voucher_app_id: 1
+                    date_used: "2019-03-15"
+                    created_at: "2019-03-15"
+                    updated_at: "2019-03-15"
+                    voucher:
+                      - id: 1
+                        image: "https://www.halpennygolf.com/Images/Models/Full/5772.Jpg"
+                        icon: "https://i.pinimg.com/originals/33/b8/69/33b869f90619e81763dbf1fccc896d8d.jpg"
+                        name: "Tri ân khách hàng"
+                        number_point: 5000
+                        date_start: "2019-01-15"
+                        date_end: "2019-01-15"
+                        conditions: "Thời hạn khuyến mại có hiệu lực đến thời hạn được ghi rõ trên coupon\""
+                        description: "THÔNG TIN ĐỐI TÁC
+                                      Isushi là điểm đến hấp dẫn cho các thực khách yêu thích văn hóa ẩm thực của xứ Hàn. Các món ăn tại nhà hàng giữ đúng hương vị truyền thống của xứ sở kim chi, do chính tay đầu bếp Hàn Quốc thực hiện."
+                        remaining_voucher: 17
+  /config:
+    get:
+      security:
+        - Bearer: []
+      tags:
+        - "Setting"
+      summary: "Get Setting"
+      operationId: ""
+      consumes:
+        - "application/x-www-form-urlencoded"
+        - "application/json"
+      produces:
+        - "application/json"
+      responses:
+        200:
+          description: Get info config successfull
+          examples:
+            Send phone successful:
+              code: 200
+              data:
+                point: "20"
+  /level:
+    get:
+      tags:
+        - "SP314"
+      summary: "Get list level"
+      operationId: ""
+      consumes:
+        - "application/x-www-form-urlencoded"
+        - "application/json"
+      produces:
+        - "application/json"
+      responses:
+        200:
+          description: Get list level
+          examples:
+            Send phone successful:
+              code: 200
+              data:
+                messages: Get list level successful
+                levels:
+                  - id: 1
+                    name: "Fresher"
+                    created_at: "2018-11-27"
+                    updated_at: "2018-11-27"
+                  - id: 2
+                    name: "Junior"
+                    created_at: "2018-11-28"
+                    updated_at: "2018-11-28"
+                  - id: 3
+                    name: "Senior"
+                    created_at: "2018-11-29"
+                    updated_at: "2018-11-29"
+                  - id: 5
+                    name: "Project Manager"
+                    created_at: "2018-11-30"
+                    updated_at: "2018-11-30"
+  /experience:
+    get:
+      tags:
+        - "SP314"
+      summary: "Get list experience"
+      operationId: ""
+      consumes:
+        - "application/x-www-form-urlencoded"
+        - "application/json"
+      produces:
+        - "application/json"
+      responses:
+        200:
+          description: Get list experience
+          examples:
+            Send phone successful:
+              code: 200
+              data:
+                messages: Get list experience successful
+                experiences:
+                  - id: 1
+                    name: "Từ 0 - 6 tháng"
+                    created_at: "2018-11-27"
+                    updated_at: "2018-11-27"
+                  - id: 2
+                    name: "Từ 6 tháng - 1 năm"
+                    created_at: "2018-11-28"
+                    updated_at: "2018-11-28"
+                  - id: 3
+                    name: "Từ 1 năm - 3 năm"
+                    created_at: "2018-11-29"
+                    updated_at: "2018-11-29"
+                  - id: 4
+                    name: "Trên 3 năm"
+                    created_at: "2018-11-30"
+                    updated_at: "2018-11-30"
+  /recruitment:
+    post:
+      security:
+        - Bearer: []
+      tags:
+        - "SP305"
+      summary: "recruitment"
+      operationId: "Recruitment"
+      consumes:
+        - "application/x-www-form-urlencoded"
+        - "application/json"
+      produces:
+        - "application/json"
+      parameters:
+        - name: id_user
+          in: "formData"
+          description: "id nhà tuyển dụng"
+          required: true
+          type: integer
+        - name: vacancies
+          in: "formData"
+          description: "Vị trí tuyển dụng"
+          required: true
+          type: string
+        - name: work_location_name
+          in: "formData"
+          description: "địa điểm làm việc - address name"
+          required: true
+          type: array
+          items:
+            type: string
+            format: binary
+        - name: work_location_lat_lng
+          in: "formData"
+          description: "Địa điểm làm việc  - last long"
+          required: true
+          type: array
+          items:
+            type: string
+            format: binary
+        - name: city_name
+          in: "formData"
+          description: "city_name"
+          required: false
+          type: string
+        - name: service_id[]
+          in: "formData"
+          description: "Ngành nghề cần tuyển"
+          required: true
+          type: integer
+        - name: wage_min
+          in: "formData"
+          description: "Mức lương min"
+          required: true
+          type: array
+          items:
+            type: string
+            format: binary
+        - name: wage_max
+          in: "formData"
+          description: "Mức lương max"
+          required: true
+          type: array
+          items:
+            type: string
+            format: binary
+        - name: number_vacancies
+          in: "formData"
+          description: "Số lượng cần tuyển"
+          required: true
+          type: integer
+        - name: type
+          in: "formData"
+          description: "0 : sinh viên | 1: thợ"
+          required: true
+          type: integer
+        - name: experience_id
+          in: "formData"
+          description: "Yêu cầu kinh nghiệm"
+          required: true
+          type: integer
+        - name: support_mode
+          in: "formData"
+          description: "Chế độ hỗ trợ"
+          required: false
+          type: string
+        - name: time_work
+          in: "formData"
+          description: "Thời gian làm việc"
+          required: false
+          type: string
+        - name: description
+          in: "formData"
+          description: "'Mô tả chi tiết công việc"
+          required: false
+          type: string
+        - name: level_recruitment_id
+          in: "formData"
+          description: " Id cấp bậc cần tuyển"
+          required: false
+          type: integer
+        - name: probationary_period
+          in: "formData"
+          description: "Thời gian thử việc"
+          required: false
+          type: integer
+        - name: url_image
+          in: "formData"
+          description: "Hình ảnh mô tả công việc"
+          required: false
+          type: array
+          items:
+            type: string
+            format: binary
+        - name: url_video
+          in: "formData"
+          description: "Video mô tả công việc"
+          required: false
+          type: string
+        - name: status
+          in: "formData"
+          description: " 0: Chưa gửi | 1: Đã gửi sau 1 tuần"
+          required: false
+          type: integer
+      responses:
+        200:
+          description: Postings job successful
+          examples:
+            Postings job successful:
+              code: 200
+              data:
+                messages: "Congratulations! you have successfully posted your resume"
+                recruiment:
+                  id: 10
+                  id_user: 30
+                  vacancies: "1"
+                  work_location_name: "105.8341598"
+                  work_location_lat_lng: "21.0277644"
+                  city_name: "Ha Noi"
+                  wage_min: "3000"
+                  wage_max: "6000"
+                  number_vacancies: 1
+                  type: 1
+                  experience_id: 2
+                  support_mode: "an, ngu, nghi"
+                  time_work: "Từ 8h sáng đến 5h30 chiều"
+                  description: "Phụ hồ"
+                  level_recruitment_id: 2
+                  probationary_period:
+                  images:
+                    - /images/images/5c0f512790708.png
+                    - /images/images/5c0f512790709.png
+                    - /images/images/5c0f512790703.png
+                  videos: "/videos/video/5c0f51278f6af.mp4"
+                  status: 0
+                  created_at: "2018-12-11 05:54:47"
+                  updated_at: "2018-12-11 05:54:47"
+                  service_id:
+                    - 1
+                    - 2
+  /profile:
+    post:
+      security:
+        - Bearer: []
+      tags:
+        - "SP315"
+      summary: "Create new profile"
+      operationId: "Profile"
+      consumes:
+        - "application/x-www-form-urlencoded"
+        - "application/json"
+      produces:
+        - "application/json"
+      parameters:
+        - name: user_id
+          in: "formData"
+          description: "Tên người đăng hồ sơ"
+          required: true
+          type: integer
+        - name: type
+          in: "formData"
+          description: "Loại hồ sơ 0: sinh viên| 1: thợ thường| 2: thợ nâng cao"
+          required: true
+          type: integer
+        - name: position
+          in: "formData"
+          description: "Vị trí mong muốn"
+          required: true
+          type: string
+        - name: current_level_id
+          in: "formData"
+          description: "Cấp bậc hiện tại"
+          required: false
+          type: integer
+        - name: desired_level_id
+          in: "formData"
+          description: "Cấp bậc mong muốn"
+          required: false
+          type: integer
+        - name: service_id[]
+          in: "formData"
+          description: "Ngành nghề mong muốn"
+          required: false
+          type: array
+          items:
+            type: string
+        - name: current_workplace[]
+          in: "formData"
+          description: "Chỗ làm việc hiện tại"
+          required: false
+          type: array
+          items:
+            type: string
+        - name: desired_workplace[]
+          in: "formData"
+          description: "Nơi làm việc mong muốn"
+          required: true
+          type: array
+          items:
+            type: string
+        - name: experience_id
+          in: "formData"
+          description: "Số năm kinh nghiệm"
+          required: true
+          type: integer
+        - name: current_salary
+          in: "formData"
+          description: "Mức lương hiện tại"
+          required: false
+          type: integer
+        - name: desired_salary
+          in: "formData"
+          description: "Mức lương mong muốn"
+          required: true
+          type: integer
+        - name: skill
+          in: "formData"
+          description: "Kỹ năng sở trường"
+          required: false
+          type: string
+        - name: "image_product[]"
+          in: "formData"
+          description: "Hình ảnh sản phẩm đã làm"
+          required: false
+          type: array
+          items:
+            type: string
+        - name: "image_forte[]"
+          in: "formData"
+          description: "Sản phẩm sở trường"
+          required: false
+          type: array
+          items:
+            type: string
+        - name: "image_drawing[]"
+          in: "formData"
+          description: "Bản vẽ kỹ thuật đã làm "
+          required: false
+          type: array
+          items:
+            type: string
+        - name: ability_overtime_id
+          in: "formData"
+          description: "Khả năng tăng ca 0: Dưới 5 buổi/tháng|1: 5-10 buổi/tháng| 2: > 10 buổi/tháng"
+          required: false
+          type: integer
+        - name: ability_manage
+          in: "formData"
+          description: "Khả năng quản lý nhóm 0: Không|1: Có"
+          required: false
+          type: integer
+        - name: ability_workfar
+          in: "formData"
+          description: "Khả năng công tác xa  0: Không|1: Có"
+          required: false
+          type: integer
+      responses:
+        200:
+          description: Create a profile successful
+          examples:
+            Create a profile successful:
+              code: 200
+              messages: "Create profile successful"
+  /overtime:
+    get:
+      security:
+        - Bearer: []
+      tags:
+        - "SP315"
+      summary: "Get list ability overtime"
+      operationId: ""
+      consumes:
+        - "application/x-www-form-urlencoded"
+        - "application/json"
+      produces:
+        - "application/json"
+      responses:
+        200:
+          description: Get list ability overtime successful
+          examples:
+            Get list list ability overtime successful:
+              code: 200
+              overtime:
+                - id: 1
+                  name: "Dưới 5 buổi/tháng"
+                - id: 2
+                  name: "5-10 buổi/tháng"
+                - id: 3
+                  name: ">10 buổi/tháng"
+  /profile/{type}:
+    get:
+      security:
+        - Bearer: []
+      tags:
+        - "SP301"
+      summary: "Get list profile"
+      operationId: ""
+      consumes:
+        - "application/x-www-form-urlencoded"
+        - "application/json"
+      produces:
+        - "application/json"
+      parameters:
+        - name: type
+          in: "path"
+          description: "Loại tài khoản 0: sinh viên| 1: thợ| 3: tất cả"
+          required: true
+          type: integer
+        - name: page
+          in: "query"
+          description: "Limit list profile"
+          required: true
+          type: integer
+        - name: search
+          in: "query"
+          description: "Tìm kiếm theo tên hoặc vị trí"
+          required: false
+          type: string
+        - name: service_id
+          in: "query"
+          description: "Lọc theo dịch vụ| service_id: '1,2,3'"
+          required: false
+          type: string
+        - name: salary_max
+          in: "query"
+          description: "Lọc theo khoảng lương cao nhất"
+          required: false
+          type: string
+        - name: salary_min
+          in: "query"
+          description: "Lọc theo khoảng lương thấp nhất"
+          required: false
+          type: string
+        - name: address_name
+          in: "query"
+          description: "Lọc theo địa chỉ làm việc"
+          required: false
+          type: string
+      responses:
+        200:
+          description: Get list profile successful
+          examples:
+            Get list profile successful:
+              code: 200
+              profiles:
+                - id: 126
+                  user:
+                    id_users: 600
+                    loaitk: 6
+                    vitien: 0
+                    name: ChiChi
+                    username: 0376399761
+                    email: null
+                    telephone: 0376399761
+                    lastvisit: 0
+                    active: 0
+                    super: 0
+                    address: TP Hà Nội - Quận Đống Đa - Phường Trung Phụng
+                    address_t: null
+                    address_h: null
+                    address_x: null
+                    dc_nhaxuong: null
+                    dc_vanphong: null
+                    yahoo: null
+                    linkfb: null
+                    linktw: null
+                    image: null
+                    avatar: null
+                    cover: null
+                    showed: 1
+                    linhvucsanxuat: null
+                    filebaogia: null
+                    idFB: null
+                    idGG: null
+                    code_intro: PTHDYAS1
+                    code_present: 3y1YmFeB
+                    service: \id_service\:5\price_min\:10000\price_max\:50000\id_service\:6\price_min\:4000\price_max\:12000
+                    identity_card: 013430641
+                    type_temp: 6
+                    point: 50000
+                    gender: null
+                    date_of_birth: null
+                    rate_feedback: 2.8
+                    count_comment: 5
+                  type: 0
+                  experience:
+                    id: 2
+                    name: Từ 6 tháng - 1 năm
+                    created_at: null
+                    updated_at: null
+                  position: Tìm việc làm thêm quán trà sữa
+                  current_level:
+                    id: 1
+                    name: Fresher
+                    created_at: 2018-11-27 07:00:00
+                    updated_at: 2018-11-27 07:00:00
+                  desired_level:
+                    id: 1
+                    name: Fresher
+                    created_at: 2018-11-27 07:00:00
+                    updated_at: 2018-11-27 07:00:00
+                  current_salary: null
+                  desired_salary: 3500000
+                  lat_lng_current: null
+                  address_current: null
+                  city_current: null
+                  lat_lng_desired: null
+                  address_desired: null
+                  city_desired: quang ninh
+                  skill: null
+                  image_product: null
+                  image_forte: null
+                  image_drawing: null
+                  ability_overtime: null
+                  ability_manage: null
+                  ability_workfar: null
+                  service:
+                    id: 1
+                    name: Xả Kho Nội Thất
+                    description: xả kho hàng hóa
+                    created_at: null
+                    updated_at: null
+                    pivot:
+                      profile_id: 126
+                      service_id: 1
+                  created_at: 2018-12-07 14:00:32
+                  updated_at: 2018-12-17 22:36:57
+                  save_status: 0
+                - id: 145
+                  user:
+                    id_users: 600
+                    loaitk: 6
+                    vitien: 0
+                    name: ChiChi
+                    username: 0376399761
+                    email: null
+                    telephone: 0376399761
+                    lastvisit: 0
+                    active: 0
+                    super: 0
+                    address: TP Hà Nội - Quận Đống Đa - Phường Trung Phụng
+                    address_t: null
+                    address_h: null
+                    address_x: null
+                    dc_nhaxuong: null
+                    dc_vanphong: null
+                    yahoo: null
+                    linkfb: null
+                    linktw: null
+                    image: null
+                    avatar: null
+                    cover: null
+                    showed: 1
+                    linhvucsanxuat: null
+                    filebaogia: null
+                    idFB: null
+                    idGG: null
+                    code_intro: PTHDYAS1
+                    code_present: 3y1YmFeB
+                    service: \id_service\:5\price_min\:10000\price_max\:50000\id_service\:6\price_min\:4000\price_max\:12000
+                    identity_card: 013430641
+                    type_temp: 6
+                    point: 50000
+                    gender: null
+                    date_of_birth: null
+                    rate_feedback: 2.8
+                    count_comment: 5
+                  type: 0
+                  experience:
+                    id: 2
+                    name: Từ 6 tháng - 1 năm
+                    created_at: null
+                    updated_at: null
+                  position: Tìm việc làm thêm quán trà sữa
+                  current_level:
+                    id: 1
+                    name: Fresher
+                    created_at: 2018-11-27 07:00:00
+                    updated_at: 2018-11-27 07:00:00
+                  desired_level:
+                    id: 1
+                    name: Fresher
+                    created_at: 2018-11-27 07:00:00
+                    updated_at: 2018-11-27 07:00:00
+                  current_salary: null
+                  desired_salary: 3500000
+                  lat_lng_current: null
+                  address_current: null
+                  city_current: null
+                  lat_lng_desired: null
+                  address_desired: null
+                  city_desired: quang ninh
+                  skill: null
+                  image_product: null
+                  image_forte: null
+                  image_drawing: null
+                  ability_overtime: null
+                  ability_manage: null
+                  ability_workfar: null
+                  service:
+                    id: 1
+                    name: Xả Kho Nội Thất
+                    description: xả kho hàng hóa
+                    created_at: null
+                    updated_at: null
+                    pivot:
+                      profile_id: 145
+                      service_id: 1
+                  created_at: 2018-12-17 09:48:59
+                  updated_at: 2018-12-17 09:48:59
+                  save_status: 0
+                - id: 134
+                  user:
+                    id_users: 600
+                    loaitk: 6
+                    vitien: 0
+                    name: ChiChi
+                    username: 0376399761
+                    email: null
+                    telephone: 0376399761
+                    lastvisit: 0
+                    active: 0
+                    super: 0
+                    address: TP Hà Nội - Quận Đống Đa - Phường Trung Phụng
+                    address_t: null
+                    address_h: null
+                    address_x: null
+                    dc_nhaxuong: null
+                    dc_vanphong: null
+                    yahoo: null
+                    linkfb: null
+                    linktw: null
+                    image: null
+                    avatar: null
+                    cover: null
+                    showed: 1
+                    linhvucsanxuat: null
+                    filebaogia: null
+                    idFB: null
+                    idGG: null
+                    code_intro: PTHDYAS1
+                    code_present: 3y1YmFeB
+                    service: \id_service\:5\price_min\:10000\price_max\:50000\id_service\:6\price_min\:4000\price_max\:12000
+                    identity_card: 013430641
+                    type_temp: 6
+                    point: 50000
+                    gender: null
+                    date_of_birth: null
+                    rate_feedback: 2.8
+                    count_comment: 5
+                  type: 0
+                  experience:
+                    id: 2
+                    name: Từ 6 tháng - 1 năm
+                    created_at: null
+                    updated_at: null
+                  position: Tìm việc làm thêm quán trà sữa
+                  current_level:
+                    id: 1
+                    name: Fresher
+                    created_at: 2018-11-27 07:00:00
+                    updated_at: 2018-11-27 07:00:00
+                  desired_level:
+                    id: 1
+                    name: Fresher
+                    created_at: 2018-11-27 07:00:00
+                    updated_at: 2018-11-27 07:00:00
+                  current_salary: null
+                  desired_salary: 3500000
+                  lat_lng_current: null
+                  address_current: null
+                  city_current: null
+                  lat_lng_desired: null
+                  address_desired: null
+                  city_desired: quang ninh
+                  skill: null
+                  image_product: null
+                  image_forte: null
+                  image_drawing: null
+                  ability_overtime: null
+                  ability_manage: null
+                  ability_workfar: null
+                  service:
+                    id: 1
+                    name: Xả Kho Nội Thất
+                    description: xả kho hàng hóa
+                    created_at: null
+                    updated_at: null
+                    pivot:
+                      profile_id: 134
+                      service_id: 1
+                  created_at: 2018-12-14 15:53:47
+                  updated_at: 2018-12-14 15:53:47
+                  save_status: 0
+                - id: 112
+                  user:
+                    id_users: 600
+                    loaitk: 6
+                    vitien: 0
+                    name: ChiChi
+                    username: 0376399761
+                    email: null
+                    telephone: 0376399761
+                    lastvisit: 0
+                    active: 0
+                    super: 0
+                    address: TP Hà Nội - Quận Đống Đa - Phường Trung Phụng
+                    address_t: null
+                    address_h: null
+                    address_x: null
+                    dc_nhaxuong: null
+                    dc_vanphong: null
+                    yahoo: null
+                    linkfb: null
+                    linktw: null
+                    image: null
+                    avatar: null
+                    cover: null
+                    showed: 1
+                    linhvucsanxuat: null
+                    filebaogia: null
+                    idFB: null
+                    idGG: null
+                    code_intro: PTHDYAS1
+                    code_present: 3y1YmFeB
+                    service: \id_service\:5\price_min\:10000\price_max\:50000\id_service\:6\price_min\:4000\price_max\:12000
+                    identity_card: 013430641
+                    type_temp: 6
+                    point: 50000
+                    gender: null
+                    date_of_birth: null
+                    rate_feedback: 2.8
+                    count_comment: 5
+                  type: 0
+                  experience:
+                    id: 2
+                    name: Từ 6 tháng - 1 năm
+                    created_at: null
+                    updated_at: null
+                  position: Tìm việc làm thêm quán trà sữa
+                  current_level:
+                    id: 1
+                    name: Fresher
+                    created_at: 2018-11-27 07:00:00
+                    updated_at: 2018-11-27 07:00:00
+                  desired_level:
+                    id: 1
+                    name: Fresher
+                    created_at: 2018-11-27 07:00:00
+                    updated_at: 2018-11-27 07:00:00
+                  current_salary: null
+                  desired_salary: 3500000
+                  lat_lng_current: null
+                  address_current: null
+                  city_current: null
+                  lat_lng_desired: null
+                  address_desired: null
+                  city_desired: quang ninh
+                  skill: null
+                  image_product: null
+                  image_forte: null
+                  image_drawing: null
+                  ability_overtime: null
+                  ability_manage: null
+                  ability_workfar: null
+                  service:
+                    id: 1
+                    name: Xả Kho Nội Thất
+                    description: xả kho hàng hóa
+                    created_at: null
+                    updated_at: null
+                    pivot:
+                      profile_id: 112
+                      service_id: 1
+                  created_at: 2018-12-14 09:07:41
+                  updated_at: 2018-12-14 09:07:41
+                  save_status: 0
+  /profile-coordinate:
+    get:
+      security:
+        - Bearer: []
+      tags:
+        - "SP301"
+      summary: "Get list profile coordinate"
+      operationId: ""
+      consumes:
+        - "application/x-www-form-urlencoded"
+        - "application/json"
+      produces:
+        - "application/json"
+      parameters:
+        - name: lat_lng
+          in: "query"
+          description: "Latitude and Longitude"
+          required: true
+          type: string
+      responses:
+        200:
+          description: Get list profile coordinate successful
+          examples:
+            Get list profile coordinate successful:
+              code: 200
+              profiles:
+                - id: 129
+                  user:
+                    id_users: 600
+                    loaitk: 6
+                    vitien: 0
+                    name: ChiChi
+                    username: 0376399761
+                    email: null
+                    telephone: 0376399761
+                    lastvisit: 0
+                    active: 0
+                    super: 0
+                    address: TP Hà Nội - Quận Đống Đa - Phường Trung Phụng
+                    address_t: null
+                    address_h: null
+                    address_x: null
+                    dc_nhaxuong: null
+                    dc_vanphong: null
+                    yahoo: null
+                    linkfb: null
+                    linktw: null
+                    image: null
+                    avatar: null
+                    cover: null
+                    showed: 1
+                    linhvucsanxuat: null
+                    filebaogia: null
+                    idFB: null
+                    idGG: null
+                    code_intro: PTHDYAS1
+                    code_present: 3y1YmFeB
+                    service: \id_service\:5\price_min\:10000\price_max\:50000\id_service\:6\price_min\:4000\price_max\:12000
+                    identity_card: 013430641
+                    type_temp: 6
+                    point: 50000
+                    rate: 1
+                    gender: null
+                    date_of_birth: null
+                  type: 2
+                  experience:
+                     id: 1
+                     name: Từ 0 - 6 tháng
+                     created_at: null
+                     updated_at: null
+
+                  position: Nhân viên bán hàng
+                  current_level: null
+                  desired_level: null
+                  current_salary: 10000000
+                  desired_salary: 15000000
+                  lat_lng_current: null
+                  address_current: null
+                  city_current: Thành Phố Hà Nội
+                  lat_lng_desired: null
+                  address_desired: null
+                  city_desired: Thành Phố Hà Nội
+                  skill: Nhanh nhẹn
+                  image_product:
+                     images/upgrade/5c135823d253f.png
+                  image_forte:
+                  image_drawing:
+                  ability_overtime: null
+                  ability_manage: 1
+                  ability_workfar: 0
+                  service:
+                    id: 3
+                    name: Dịch vụ thạch cao
+                    description: Thạch cao trần nhà
+                    created_at: null
+                    updated_at: null
+                    pivot:
+                      profile_id: 129
+                      service_id: 3
+                  km: 3.102799981326184
+                  created_at: 2018-12-17 07:00:00
+                  updated_at: 2018-12-17 14:13:39
+                  save_status: 0
+                - id: 149
+                  user:
+                    id_users: 722
+                    loaitk: 6
+                    vitien: 0
+                    name: 0919606902
+                    username: 0919606902
+                    email: null
+                    telephone: 0919606902
+                    lastvisit: 0
+                    active: 0
+                    super: 0
+                    address: Thành phố Hà Nội Quận Ba Đình Phường Phúc Xá
+                    address_t: null
+                    address_h: null
+                    address_x: null
+                    dc_nhaxuong: null
+                    dc_vanphong: null
+                    yahoo: null
+                    linkfb: null
+                    linktw: null
+                    image: null
+                    avatar: null
+                    cover: null
+                    showed: 1
+                    linhvucsanxuat: null
+                    filebaogia: null
+                    idFB: null
+                    idGG: null
+                    code_intro: null
+                    code_present: ABCDERTK
+                    service: \id_service\:2\price_min\:0\price_max\:100000000
+                    identity_card: 956859835255522
+                    type_temp: 4
+                    point: 1225
+                    rate: 1
+                    gender: null
+                    date_of_birth: null
+                  type: 2
+                  experience:
+                    id: 1
+                    name: Từ 0 - 6 tháng
+                    created_at: null
+                    updated_at: null
+                  position: Hồ sơ giáo sư
+                  current_level: null
+                  desired_level: null
+                  current_salary: 20808808
+                  desired_salary: 2800000000
+                  lat_lng_current: null
+                  address_current: null
+                  city_current: Thành Phố Hà Nội
+                  lat_lng_desired: null
+                  address_desired: null
+                  city_desired: Thành Phố Hà Nội
+                  skill: Dgdgg
+                  image_product:
+                    images/upgrade/5c172b3feba10.png
+                    images/upgrade/5c172b3febd67.png
+                    images/upgrade/5c172b3febf08.png
+                    images/upgrade/5c172b3febf52.png
+                    images/upgrade/5c172b3febfa3.png
+                    images/upgrade/5c172b3febfe1.png
+                    images/upgrade/5c172b3fec23f.png
+                    images/upgrade/5c172b3fec294.png
+                    images/upgrade/5c172b3fec42e.png
+                    images/upgrade/5c172b3fec47a.png
+                  image_forte:
+                    images/upgrade/5c172b3fed9b8.png
+                    images/upgrade/5c172b3feda08.png
+                    images/upgrade/5c172b3feda33.png
+                    images/upgrade/5c172b3feda58.png
+                    images/upgrade/5c172b3feda89.png
+                    images/upgrade/5c172b3fedac2.png
+                    images/upgrade/5c172b3fedafa.png
+                    images/upgrade/5c172b3fedb1c.png
+                    images/upgrade/5c172b3fedb3e.png
+                    images/upgrade/5c172b3fedb69.png
+                  image_drawing:
+                    images/upgrade/5c172b3fee6a0.png
+                    images/upgrade/5c172b3fee6fd.png
+                  ability_overtime: null
+                  ability_manage: 1
+                  ability_workfar: 1
+                  service:
+                    id: 2
+                    name: Dịch vụ sơn bả
+                    description: Thuê sơn bả nội thất
+                    created_at: null
+                    updated_at: null
+                    pivot:
+                      profile_id: 149
+                      service_id: 2
+                  km: 0
+                  created_at: 2018-12-17 11:51:11
+                  updated_at: 2018-12-17 11:51:11
+                  save_status: 0
+  /profile-detail/{id_profile}:
+    get:
+      security:
+        - Bearer: []
+      tags:
+        - "SP302"
+      summary: "Get profile details"
+      operationId: "profile"
+      consumes:
+        - "application/x-www-form-urlencoded"
+        - "application/json"
+      produces:
+        - "application/json"
+      parameters:
+        - name: id_profile
+          in: "path"
+          description: "id_profile"
+          required: true
+          type: integer
+      responses:
+        200:
+          description: Get profile details successful
+          examples:
+            Get profile details successful:
+              code: 200
+              data:
+                messages: "Get profile details successful"
+                profiles:
+                id: 2
+                user_id: 30
+                specialize_id: 1
+                type: 1
+                position: "QA"
+                level_id: 2
+                career_id: 2
+                workplace: "Ha Noi"
+                experience_id: 2
+                salary: "99999999"
+                skill: "quang gach"
+                image_product: null
+                image_forte: null
+                image_drawing: null
+                ability_overtime:
+                  - id: 1
+                    name: Khong
+                ability_manage: 1
+                ability_workfar: 1
+                created_at: null
+                updated_at: null
+                user:
+                  - id_users: 30
+                    loaitk: 1
+                    vitien: 0
+                    name: "Vu Trong Nghiem"
+                    username: " 0936788061"
+                    email: "nghiemtrongvu01806@gmail.com"
+                    telephone: "0936788061"
+                    lastvisit: 1536653789
+                    active: 1
+                    super: 1
+                    address: "Ha Noi"
+                    address_t: ""
+                    address_h: ""
+                    address_x: ""
+                    dc_nhaxuong: "Nam Hai, Nam Truc"
+                    dc_vanphong: "Nháº\u00adp Ä‘á»‹a chá»‰ vÄƒn phÃ²ng cá»§a báº¡n"
+                    yahoo: null
+                    linkfb: null
+                    linktw: null
+                    image: "banner-xc6mo0ovwzcpywb-76-doi-tac.jpg"
+                    avatar: "55d1cc54687c8822d16d.jpg"
+                    cover: null
+                    showed: 1
+                    linhvucsanxuat: "Ná»™i tháº¥t gá»—"
+                    filebaogia: ""
+                    idFB: ""
+                    idGG: "1"
+                    experience: null
+                    skill: null
+                    code_intro: null
+                    code_present: ""
+                    service: null
+                    identity_card: null
+                    type_temp: null
+                    point: 0
+                    rate: 1
+                    gender: 0
+                    date_of_birth: "2018-11-20 00:00:00"
+                    rate_feedback: 3
+                    count_comment: 5
+  /profile-saved:
+    post:
+      security:
+        - Bearer: []
+      tags:
+        - "SP301"
+      summary: "profilesaved"
+      operationId: "Recruitme"
+      consumes:
+        - "application/x-www-form-urlencoded"
+        - "application/json"
+      produces:
+        - "application/json"
+      parameters:
+        - name: user_id
+          in: "formData"
+          description: "User id"
+          required: true
+          type: number
+        - name: profile_id
+          in: "formData"
+          description: "profile id"
+          required: true
+          type: number
+        - name: is_saved
+          in: "formData"
+          description: "1: lưu, 0: xóa hồ sơ"
+          required: true
+          type: number
+      responses:
+        200:
+          description: Save profile successful
+          examples:
+            Save profile successful:
+              code: 200
+              messages: "Save profile successful"
+            Profile already exist:
+              code: 436
+              message: "Profile already exist"
+            Delete profile successfully:
+              code: 200
+              message: "Delete profile successfully"
+
+  /profile-saved/{id}:
+    get:
+      security:
+        - Bearer: []
+      tags:
+        - "SP303"
+      summary: "Get list profile saved"
+      operationId: ""
+      consumes:
+        - "application/x-www-form-urlencoded"
+        - "application/json"
+      produces:
+        - "application/json"
+      parameters:
+        - name: id
+          in: "path"
+          description: "user_id"
+          required: true
+          type: integer
+      responses:
+        200:
+          description: Get list profile saved successful
+          examples:
+            Get list profile saved successful:
+              code: 200
+              data:
+                messages: "Get list profile saved successful"
+                profile_saved:
+                  - id: 1
+                    user_id: 30
+                    profile_id: 1
+                    save_status: 1
+                    "user":
+                      "id_users": 30
+                      "loaitk": 1
+                      "vitien": 0
+                      "name": "Vu Trong Nghiem"
+                      "username": " 0936788061"
+                      "email": "nghiemtrongvu01806@gmail.com"
+                      "telephone": "0936788061"
+                      "lastvisit": 1536653789
+                      "active": 1
+                      "super": 1
+                      "address": "Ha Noi"
+                      "address_t": ""
+                      "address_h": ""
+                      "address_x": ""
+                      "dc_nhaxuong": "Nam Hai, Nam Truc"
+                      "dc_vanphong": "Nháº\u00adp Ä‘á»‹a chá»‰ vÄƒn phÃ²ng cá»§a báº¡n"
+                      "yahoo": null
+                      "linkfb": null
+                      "linktw": null
+                      "image": "banner-xc6mo0ovwzcpywb-76-doi-tac.jpg"
+                      "avatar": "55d1cc54687c8822d16d.jpg"
+                      "cover": null
+                      "showed": 1
+                      "linhvucsanxuat": "Ná»™i tháº¥t gá»—"
+                      "filebaogia": ""
+                      "idFB": ""
+                      "idGG": "1"
+                      "experience": null
+                      "skill": null
+                      "code_intro": null
+                      "code_present": ""
+                      "service": null
+                      "identity_card": null
+                      "type_temp": null
+                      "point": 0
+                      "rate": 1
+                      "gender": 0
+                      "date_of_birth": "2018-11-20 00:00:00"
+                      "rate_feedback": 2.8,
+                      "count_comment": 5
+                    "profiles":
+                      "id": 88
+                      "user_id": 742
+                      "type": 2
+                      "position": "tìm việc làm sửa chữa đồ gia dụng"
+                      "current_level_id": null
+                      "desired_level_id": null
+                      "lat_lng_current": "20.471331, 105.947990"
+                      "address_current": "Thanh Liêm District, Hà Nam, Vietnam"
+                      "city_current": "ha nam"
+                      "lat_lng_desired": "21.016346, 105.833670"
+                      "address_desired": "Đống Đa, Hanoi, Vietnam"
+                      "city_desired": "ha noi"
+                      "experience_id": 1
+                      "current_salary": 7000000
+                      "desired_salary": 15000000
+                      "skill": "có khả năng làm việc chăm chỉ blah blah"
+                      "image_product": []
+                      "image_forte": []
+                      "image_drawing": []
+                      "ability_overtime_id": 1
+                      "ability_manage": 1
+                      "ability_workfar": 1
+                      "status_notice": 0
+                      "created_at": "2018-12-13 07:39:32"
+                      "updated_at": "2018-12-13 07:39:32"
+                      "experience":
+                          "id": 1
+                          "name": "2 năm"
+                          "created_at": null
+                          "updated_at": null
+
+                      "level_current": null
+                      "level_desired": null
+                      "services": []
+                      "ability_overtime":
+                          "id": 1
+                          "name": "KHONG"
+    delete:
+      security:
+        - Bearer: []
+      tags:
+        - "SP303"
+      summary: "Delete profile"
+      operationId: ""
+      consumes:
+        - "application/x-www-form-urlencoded"
+        - "application/json"
+      produces:
+        - "application/json"
+      parameters:
+        - name: id
+          in: "path"
+          description: "id"
+          required: true
+          type: integer
+      responses:
+        200:
+          description: Delete profile saved successful
+          examples:
+            Delete profile saved successful:
+              code: 200
+              data:
+                messages: "Delete profile saved successful"
+                id_profile: 3
+  /concentrate-profile:
+    get:
+      tags:
+        - "SP319"
+      summary: Get concentrate profile
+      consumes:
+        - "application/x-www-form-urlencoded"
+        - "application/json"
+      operationId: ""
+      produces:
+        - application/json
+      responses:
+        200:
+          description: Get concentrate profile successful
+          examples:
+            Get concentrate profile successful:
+              code: 200
+              data:
+                messages: "Get concentrate profile successful"
+                concentrate_profile: "Thành phố Hà Nội"
+            No result:
+              code: 439
+              messages:
+                - "No result"
+  /recruitment/{id}:
+    get:
+      tags:
+        - "SP307"
+      security:
+        - Bearer: []
+      summary: Get recruitment of me
+      consumes:
+        - "application/x-www-form-urlencoded"
+        - "application/json"
+      operationId: getRecruitment
+      produces:
+        - application/json
+      parameters:
+        - name: id
+          in: "path"
+          description: "id của user"
+          required: true
+          type: integer
+      responses:
+        200:
+          description: Get list recruitment of mine successful
+          examples:
+            Get list recruitment successful:
+              code: 200
+              data:
+                messages: "Get list recruitment successful"
+                recruitment:
+                  - id: 10
+                    id_user: 30
+                    vacancies: "1"
+                    work_location_name: "105.8341598"
+                    work_location_lat_lng: "21.0277644"
+                    wage_min: "3000"
+                    wage_max: "6000"
+                    number_vacancies: 1
+                    type: 1
+                    experience_id: 2
+                    support_mode: "an, ngu, nghi"
+                    time_work: "Từ 8h sáng đến 5h30 chiều"
+                    description: "Phụ hồ"
+                    level_recruitment_id: 2
+                    probationary_period:
+                    images:
+                      - /images/images/5c0f512790708.png
+                      - /images/images/5c0f512790709.png
+                      - /images/images/5c0f512790703.png
+                    videos: "/videos/video/5c0f51278f6af.mp4"
+                    status: 0
+                    created_at: "2018-12-11 05:54:47"
+                    updated_at: "2018-12-11 05:54:47"
+                  - id: 11
+                    id_user: 30
+                    vacancies: "1"
+                    work_location_name: "105.8341598"
+                    work_location_lat_lng: "21.0277644"
+                    wage_min: "3000"
+                    wage_max: "6000"
+                    number_vacancies: 1
+                    type: 1
+                    experience_id: 2
+                    support_mode: "an, ngu, nghi"
+                    time_work: "Từ 8h sáng đến 5h30 chiều"
+                    description: "Phụ hồ"
+                    level_recruitment_id: 2
+                    probationary_period:
+                    images:
+                      - /images/images/5c0f512790708.png
+                      - /images/images/5c0f512790709.png
+                      - /images/images/5c0f512790703.png
+                    videos: "/videos/video/5c0f51278f6af.mp4"
+                    status: 0
+                    created_at: "2018-12-11 05:54:47"
+                    updated_at: "2018-12-11 05:54:47"
+    put:
+      tags:
+        - "SP307"
+      security:
+        - Bearer: []
+      summary: Update a recruitment
+      consumes:
+        - "application/x-www-form-urlencoded"
+        - "application/json"
+      operationId: updateRecruitment
+      produces:
+        - application/json
+      parameters:
+        - name: id
+          in: path
+          description: "id tin tuyển dụng"
+          required: true
+          type: integer
+        - name: vacancies
+          in: "formData"
+          description: "Vị trí tuyển dụng"
+          required: false
+          type: string
+        - name: work_location_name
+          in: "formData"
+          description: "địa điểm làm việc - address name"
+          required: false
+          type: array
+          items:
+            type: string
+            format: binary
+        - name: work_location_lat_lng
+          in: "formData"
+          description: "Địa điểm làm việc  - last long'"
+          required: false
+          type: array
+          items:
+            type: string
+            format: binary
+        - name: service_id
+          in: "formData"
+          description: "Ngành nghề cần tuyển"
+          required: false
+          type: integer
+        - name: wage_min
+          in: "formData"
+          description: "Mức lương min"
+          required: false
+          type: array
+          items:
+            type: string
+            format: binary
+        - name: wage_max
+          in: "formData"
+          description: "Mức lương max"
+          required: false
+          type: array
+          items:
+            type: string
+            format: binary
+        - name: number_vacancies
+          in: "formData"
+          description: "Số lượng cần tuyển"
+          required: false
+          type: integer
+        - name: type
+          in: "formData"
+          description: "0 : sinh viên | 1: thợ"
+          required: false
+          type: integer
+        - name: experience_id
+          in: "formData"
+          description: "Yêu cầu kinh nghiệm"
+          required: false
+          type: integer
+        - name: support_mode
+          in: "formData"
+          description: "Chế độ hỗ trợ"
+          required: false
+          type: string
+        - name: time_work
+          in: "formData"
+          description: "Thời gian làm việc"
+          required: false
+          type: string
+        - name: description
+          in: "formData"
+          description: "'Mô tả chi tiết công việc"
+          required: false
+          type: string
+        - name: level_recruitment_id
+          in: "formData"
+          description: " Id cấp bậc cần tuyển"
+          required: false
+          type: integer
+        - name: probationary_period
+          in: "formData"
+          description: "Thời gian thử việc"
+          required: false
+          type: integer
+        - name: url_image
+          in: "formData"
+          description: "Hình ảnh mô tả công việc"
+          required: false
+          type: array
+          items:
+            type: string
+            format: binary
+        - name: url_video
+          in: "formData"
+          description: "Video mô tả công việc"
+          required: false
+          type: string
+        - name: status
+          in: "formData"
+          description: "0: chưa gửi thông báo, 1:đã gửi thông báo sau 1 tuần"
+          required: false
+          type: integer
+      responses:
+        200:
+          description: Update recruitment successful
+          examples:
+            Update recruitment successful:
+              code: 200
+              data:
+                messages: "Update recruitment successful"
+                recruitment:
+                  id: 10
+                  id_user: 30
+                  vacancies: "1"
+                  work_location_name: "105.8341598"
+                  work_location_lat_lng: "21.0277644"
+                  wage_min: "3000"
+                  wage_max: "6000"
+                  number_vacancies: 1
+                  type: 1
+                  experience_id: 2
+                  support_mode: "an, ngu, nghi"
+                  time_work: "Từ 8h sáng đến 5h30 chiều"
+                  description: "Phụ hồ"
+                  level_recruitment_id: 2
+                  probationary_period:
+                  images:
+                    - /images/images/5c0f512790708.png
+                    - /images/images/5c0f512790709.png
+                    - /images/images/5c0f512790703.png
+                  videos: "/videos/video/5c0f51278f6af.mp4"
+                  status: 0
+                  created_at: "2018-12-11 05:54:47"
+                  updated_at: "2018-12-11 05:54:47"
+    delete:
+      security:
+        - Bearer: []
+      tags:
+        - "SP307"
+      summary: "Delete recruitment"
+      operationId: ""
+      consumes:
+        - "application/x-www-form-urlencoded"
+        - "application/json"
+      produces:
+        - "application/json"
+      parameters:
+        - name: id
+          in: "path"
+          description: "Id recruitment"
+          required: true
+          type: integer
+      responses:
+        200:
+          description: Delete recruitment successful
+          examples:
+            Delete profile successful:
+              code: 200
+              messages: "Delete precruitment successful"
+  /list-recruitment/{type}/{user_id}:
+    get:
+      tags:
+        - "SP310"
+      summary: "Get list recruitment"
+      operationId: ""
+      consumes:
+        - "application/x-www-form-urlencoded"
+        - "application/json"
+      produces:
+        - "application/json"
+      parameters:
+        - name: type
+          in: "path"
+          description: "Loại tài khoản 0: sinh viên| 1: thợ| 3: tất cả"
+          required: true
+          type: integer
+        - name: user_id
+          in: "path"
+          description: "id user login app"
+          required: true
+          type: integer
+        - name: page
+          in: "query"
+          description: "Giới hạn bản ghi trên 1 trang"
+          required: true
+          type: integer
+        - name: search
+          in: "query"
+          description: "Tìm kiếm theo tên hoặc vị trí"
+          required: false
+          type: string
+        - name: wage_max
+          in: "query"
+          description: "Lọc theo khoảng lương cao nhất"
+          required: false
+          type: string
+        - name: wage_min
+          in: "query"
+          description: "Lọc theo khoảng lương thấp nhất"
+          required: false
+          type: string
+        - name: service_id
+          in: "query"
+          description: "Array id service| service_id: '1,2,3'"
+          required: false
+          type: string
+        - name: address_name
+          in: "query"
+          description: "Lọc theo địa chỉ làm việc "
+          required: false
+          type: string
+        - name: lat_lng
+          in: "query"
+          description: "Latitude longitude| {lat_lng: lat,lng}"
+          required: false
+          type: string
+      responses:
+        200:
+          description: Get list recruitment successful
+          examples:
+            Get list recruitment successful:
+              code: 200
+              recruitments:
+                - id: 11
+                  id_user: 742
+                  vacancies: "Tuyển nhân viên chăm sóc khách hàng"
+                  work_location_name: "Đống Đa Hanoi Vietnam"
+                  work_location_lat_lng: "21.016346 12356.54423"
+                  city_name: null
+                  wage_min: 1000000
+                  wage_max: 3000000
+                  number_vacancies: 2
+                  type: 0
+                  experience_id: 2
+                  support_mode: null
+                  time_work: "Làm việc từ 7h đến 10h tối"
+                  description: "không"
+                  level_recruitment_id: null
+                  probationary_period: null
+                  images: "images/recruitment/5c0f88f1a60bd.png"
+                  videos: null
+                  status: 0
+                  created_at: 2018-12-11 02:52:49
+                  updated_at: 2018-12-11 02:52:49
+                  user:
+                    id_users: 742
+                    loaitk: 2
+                    vitien: 0
+                    name: "hangdk"
+                    username: 0973725069
+                    email: null
+                    telephone: 0973725069
+                    lastvisit: 0
+                    active: 0
+                    super: 0
+                    address: "TP Hà Nội - Quận Đống Đa - Phường Trung Phụng"
+                    address_t: null
+                    address_h: null
+                    address_x: null
+                    dc_nhaxuong: null
+                    dc_vanphong: null
+                    yahoo: null
+                    linkfb: null
+                    linktw: null
+                    image: null
+                    avatar: null
+                    cover: null
+                    showed: 1
+                    linhvucsanxuat: null
+                    filebaogia: null
+                    idFB: null
+                    idGG: null
+                    code_intro: "VMBgFY51"
+                    code_present: "icg5IPLZ"
+                    service: "id_service:5price_min:10000price_max:50000id_service:6price_min:4000price_max:12000"
+                    identity_card: 013430641
+                    type_temp: 2
+                    point: 1135
+                    rate: 1
+                    gender: null
+                    date_of_birth: null
+                    date_call: null
+                    rate_feedback: 2.8
+                    count_comment: 5
+                  services:
+                    id: 1
+                    name: Xả Kho Nội Thất
+                    description: xả kho hàng hóa
+                    created_at: null
+                    updated_at: null
+                    pivot:
+                      recruitment_id: 11
+                      service_id: 1
+                  experience:
+                    id: 2
+                    name: "Từ 6 tháng - 1 năm"
+                    created_at: 2018-11-28 00:00:00
+                    updated_at: 2018-11-28 00:00:00
+                  level: null
+                  km: 11,
+                  save_status: 1
+                - id: 2
+                  id_user: 763
+                  vacancies: 1
+                  work_location_name: Đống Đa Hanoi Vietnam
+                  work_location_lat_lng: 21.036377 105.790044
+                  city_name: null
+                  wage_min: 66666
+                  wage_max: 99999
+                  number_vacancies: 8
+                  type: 0
+                  experience_id: 2
+                  support_mode: khong
+                  time_work: aaaa
+                  description: khong
+                  level_recruitment_id: 2
+                  probationary_period: 1
+                  images: null
+                  videos: null
+                  status: 0
+                  created_at: 2018-12-11 00:51:09
+                  updated_at: 2018-12-11 00:51:09
+                  user:
+                    id_users: 763
+                    loaitk: 1
+                    vitien: 0
+                    name: ducpvt
+                    username: 03762558723
+                    email: null
+                    telephone: 03762558723
+                    lastvisit: 0
+                    active: 0
+                    super: 0
+                    address: null
+                    address_t: null
+                    address_h: null
+                    address_x: null
+                    dc_nhaxuong: null
+                    dc_vanphong: null
+                    yahoo: null
+                    linkfb: null
+                    linktw: null
+                    image: null
+                    avatar: null
+                    cover: null
+                    showed: 1
+                    linhvucsanxuat: null
+                    filebaogia: null
+                    idFB: null
+                    idGG: null
+                    code_intro: null
+                    code_present: q6WgOpkx
+                    service: null
+                    identity_card: null
+                    type_temp: null
+                    point: 0
+                    rate: 0
+                    gender: null
+                    date_of_birth: null
+                    date_call: null
+                    rate_feedback: 2.8
+                    count_comment: 5
+                  services:
+                    - id: 1
+                      name: "Xả Kho Nội Thất"
+                      description: "xả kho hàng hóa"
+                      created_at: null
+                      updated_at: null
+                      pivot:
+                        recruitment_id: 2
+                        service_id: 1
+                    - id: 2
+                      name: "Dịch vụ sơn bả"
+                      description: "Thuê sơn bả nội thất"
+                      created_at: null
+                      updated_at: null
+                      pivot:
+                        recruitment_id: 2
+                        service_id: 2
+                    - id: 3
+                      name: "Dịch vụ thạch cao"
+                      description: "Thạch cao trần nhà"
+                      created_at: null
+                      updated_at: null
+                      pivot:
+                        recruitment_id: 2
+                        service_id: 3
+                    - id: 4
+                      name: "Thiết kế bản vẽ"
+                      description: "Thiết kế bản vẽ kiến trúc"
+                      created_at: null
+                      updated_at: null
+                      pivot:
+                        recruitment_id: 2
+                        service_id: 4
+                  experience:
+                    - id: 2
+                      name: "Từ 6 tháng - 1 năm"
+                      created_at: 2018-11-28 00:00:00
+                      updated_at: 2018-11-28 00:00:00
+                  level:
+                    - id: 2
+                      name: "Junior"
+                      created_at: 2018-11-28 00:00:00
+                      updated_at: 2018-11-28 00:00:00
+                  km: 11.3,
+                  save_status: 0
+  /recruitment-coordinate/{user_id}:
+    get:
+      tags:
+        - "SP316"
+      summary: "Get list recruitment coordinate"
+      operationId: ""
+      consumes:
+        - "application/x-www-form-urlencoded"
+        - "application/json"
+      produces:
+        - "application/json"
+      parameters:
+        - name: lat_lng
+          in: "query"
+          description: "Latitude and Longitude| lat_lng: lat,lng"
+          required: true
+          type: string
+        - name: user_id
+          in: "path"
+          description: "id user login app"
+          required: true
+          type: integer
+      responses:
+        200:
+          description: Get list recruitment coordinate successful
+          examples:
+            Get list recruitment coordinate successful:
+              code: 200
+              recruitments:
+                - id: 101
+                  user:
+                    - id_users: 717
+                      loaitk: 5
+                      vitien: 0
+                      name: Dũng
+                      username: 0987654321
+                      email: null
+                      telephone: 0987654321
+                      lastvisit: 0
+                      active: 0
+                      super: 0
+                      address: Thành phố Hà Nội Quận Ba Đình Phường Phúc Xá
+                      address_t: null
+                      address_h: null
+                      address_x: null
+                      dc_nhaxuong: null
+                      dc_vanphong: null
+                      yahoo: null
+                      linkfb: null
+                      linktw: null
+                      image: null
+                      avatar: null
+                      cover: null
+                      showed: 1
+                      linhvucsanxuat: null
+                      filebaogia: null
+                      idFB: null
+                      idGG: null
+                      code_intro: null
+                      code_present: jRJKgoD0
+                      service: \id_service\:1\price_min\:0\price_max\:100000000
+                      identity_card: 243333333333333
+                      type_temp: null
+                      point: 995000
+                      rate: 1
+                      gender: null
+                      date_of_birth: null
+                  vacancies: Nguyen Tien Dung
+                  work_location_name: Hanoi Hoàn Kiếm Hanoi Vietnam
+                  work_location_lat_lng: 21.0277644 105.8341598
+                  city_name: Hà Nội
+                  wage_min: null
+                  wage_max: null
+                  number_vacancies: 2
+                  type: 0
+                  experience:
+                    id: 1
+                    name: Từ 0 - 6 tháng
+                    created_at: null
+                    updated_at: null
+                  support_mode: null
+                  time_work: 2
+                  description: 123333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333
+                  level_recruitment:
+                    id: 1
+                    name: Fresher
+                    created_at: 2018-11-27 07:00:00
+                    updated_at: 2018-11-27 07:00:00
+                  probationary_period: 0
+                  videos: null
+                  images:
+                    images/recruitment/5c135f86e63ff.png
+                    images/recruitment/5c135f86e64d2.png
+                  status_notice: 0
+                  service:
+                    id: 2
+                    name: Dịch vụ sơn bả
+                    description: Thuê sơn bả nội thất
+                    created_at: null
+                    updated_at: null
+                    pivot:
+                      recruitment_id: 101
+                      service_id: 2
+                  km: 0
+                  updated_at: 2018-12-14 14:45:10
+                  created_at: 2018-12-14 14:45:10
+                  save_status: 0
+                - id: 118
+                  user:
+                    id_users: 738
+                    loaitk: 6
+                    vitien: 0
+                    name: 4234234
+                    username: 0986258591
+                    email: null
+                    telephone: 0986258591
+                    lastvisit: 0
+                    active: 0
+                    super: 0
+                    address: null
+                    address_t: null
+                    address_h: null
+                    address_x: null
+                    dc_nhaxuong: null
+                    dc_vanphong: null
+                    yahoo: null
+                    linkfb: null
+                    linktw: null
+                    image: null
+                    avatar: null
+                    cover: null
+                    showed: 1
+                    linhvucsanxuat: null
+                    filebaogia: null
+                    idFB: null
+                    idGG: null
+                    code_intro: null
+                    code_present: pI61vYML
+                    service: null
+                    identity_card: null
+                    type_temp: 2
+                    point: 6000
+                    rate: 1
+                    gender: null
+                    date_of_birth: null
+                  vacancies: 123456
+                  work_location_name: Hanoi Hoàn Kiếm Hanoi Vietnam
+                  work_location_lat_lng: 21.0277644 105.8341598
+                  city_name: Thành Phố Hà Nội
+                  wage_min: 1000000
+                  wage_max: 30000000
+                  number_vacancies: 10
+                  type: 0
+                  experience:
+                    id: 1
+                    name: Từ 0 - 6 tháng
+                    created_at: null
+                    updated_at: null
+                  support_mode: null
+                  time_work: 3123123
+                  description: 312321312321 dfsdfsdfs fdsfdsfds dfsdfsdfs dfsdfsdfs sdfdsfsdfs fsdfdsfdsfs dfsdfsdfs fsfsdfsdf fdsfdsfds dfsdfsdfs fdsfdsfds dsfsd
+                  level_recruitment:
+                    id: 1
+                    name: Fresher
+                    created_at: 2018-11-27 07:00:00
+                    updated_at: 2018-11-27 07:00:00
+                  probationary_period: 0
+                  videos: null
+                  images:
+                    images/recruitment/5c14a46e4b2ba.png
+                  status_notice: 0
+                  service:
+                    id: 1
+                    name: Xả Kho Nội Thất
+                    description: xả kho hàng hóa
+                    created_at: null
+                    updated_at: null
+                    pivot:
+                      recruitment_id: 118
+                      service_id: 1
+                  km: 0
+                  updated_at: 2018-12-15 13:51:26
+                  created_at: 2018-12-15 13:51:26
+                  save_status: 0
+  /detail-recruitment/{id}/{user_id}:
+    get:
+      tags:
+        - "SP312"
+      summary: Get detail recruitment
+      consumes:
+        - "application/x-www-form-urlencoded"
+        - "application/json"
+      operationId: getDetailRecruitment
+      produces:
+        - application/json
+      parameters:
+        - name: id
+          in: "path"
+          description: "id tin tuyển dụng"
+          required: true
+          type: integer
+        - name: user_id
+          in: "path"
+          description: "id user login app"
+          required: true
+          type: integer
+      responses:
+        200:
+          description: Get details recruitment successful
+          examples:
+            Get details recruitment successful:
+              code: 200
+              data:
+                messages: "Get details recruittment successful"
+                recruitment:
+                  id: 10
+                  id_user: 30
+                  vacancies: "1"
+                  work_location_name: "105.8341598"
+                  work_location_lat_lng: "21.0277644"
+                  wage_min: "3000"
+                  wage_max: "6000"
+                  number_vacancies: 1
+                  type: 1
+                  experience_id: 2
+                  support_mode: "an, ngu, nghi"
+                  time_work: "Từ 8h sáng đến 5h30 chiều"
+                  description: "Phụ hồ"
+                  level_recruitment_id: 2
+                  probationary_period:
+                  images:
+                    - /images/images/5c0f512790708.png
+                    - /images/images/5c0f512790709.png
+                    - /images/images/5c0f512790703.png
+                  videos: "/videos/video/5c0f51278f6af.mp4"
+                  status: 0
+                  created_at: "2018-12-11 05:54:47"
+                  updated_at: "2018-12-11 05:54:47"
+                  save_status: 1
+                  services:
+                    - id: 1
+                      name: "Xả Kho Nội Thất"
+                      description: "xar kho"
+                      created_at: null
+                      updated_at: null
+                      pivot:
+                        recruitment_id": 83
+                        service_id": 1
+                    - id: 2
+                      name: "Xả kho sơn bả"
+                      description: "Xả mạnh"
+                      created_at: null
+                      updated_at: null
+                      pivot:
+                        recruitment_id": 83
+                        service_id": 2
+
+                  user:
+                    - id_users: 30
+                      loaitk: 1
+                      vitien: 0
+                      name: "Vu Trong Nghiem"
+                      username: " 0936788061"
+                      email: "nghiemtrongvu01806@gmail.com"
+                      telephone: "0936788061"
+                      lastvisit: 1536653789
+                      active: 1
+                      super: 1
+                      address: "Ha Noi"
+                      address_t: ""
+                      address_h: ""
+                      address_x: ""
+                      dc_nhaxuong": "Nam Hai, Nam Truc"
+                      dc_vanphong": "Nháº\u00adp Ä‘á»‹a chá»‰ vÄƒn phÃ²ng cá»§a báº¡n"
+                      yahoo": null
+                      linkfb": null
+                      linktw": null
+                      image": "banner-xc6mo0ovwzcpywb-76-doi-tac.jpg"
+                      avatar": "55d1cc54687c8822d16d.jpg"
+                      cover": null
+                      showed": 1
+                      linhvucsanxuat": "Ná»™i tháº¥t gá»—"
+                      filebaogia": ""
+                      idFB": ""
+                      idGG": "1"
+                      experience": null
+                      skill": null
+                      code_intro": null
+                      code_present": ""
+                      service": null
+                      identity_card": null
+                      type_temp": null
+                      point": 0
+                      rate": 1
+                      gender": 0
+                      date_of_birth": "2018-11-20 00:00:00"
+                      rate_feedback: 2.8
+                      count_comment: 5
+                  experience:
+                    id: 2
+                    name: "3 năm"
+                    created_at: null
+                    updated_at: null
+  /concentrate-recruitment:
+      get:
+        tags:
+          - "SP320"
+        summary: Get concentrate recruitment
+        consumes:
+          - "application/x-www-form-urlencoded"
+          - "application/json"
+        operationId: ""
+        produces:
+          - application/json
+        responses:
+          200:
+            description: Get concentrate recruitment successful
+            examples:
+              Get concentrate recruitment successful:
+                code: 200
+                data:
+                  messages: "Get concentrate recruitment successful"
+                  concentrate_recruitment: "Tỉnh Nghệ An"
+              No result:
+                code: 439
+                messages:
+                  - "No result"
+  /call-now/{id}:
+    post:
+      tags:
+        - "Call now"
+      security:
+        - Bearer: []
+      summary: Call now
+      consumes:
+        - "application/x-www-form-urlencoded"
+        - "application/json"
+      operationId: Call now
+      produces:
+        - application/json
+      parameters:
+        - name: id
+          in: "path"
+          description: "id user"
+          required: true
+          type: integer
+        - name: profile_id
+          in: "formData"
+          description: "id profile"
+          required: false
+          type: integer
+        - name: recruitment_id
+          in: "formData"
+          description: "id recruitment"
+          required: false
+          type: integer
+      responses:
+        200:
+          description: Call successfully!
+          examples:
+            Call successfully!:
+              code: 200
+              data:
+                messages: "Call successfully!"
+            Call fails!:
+              code: 429
+              date:
+                messages: "You do not have enough points to call!"
+  /save-job:
+    post:
+      security:
+        - Bearer: []
+      tags:
+        - "SP311"
+      summary: "Save job"
+      operationId: ""
+      consumes:
+        - "application/x-www-form-urlencoded"
+        - "application/json"
+      produces:
+        - "application/json"
+      parameters:
+        - name: user_id
+          in: "formData"
+          description: "User id"
+          required: true
+          type: number
+        - name: saved_job_id
+          in: "formData"
+          description: "Id recruitment"
+          required: true
+          type: number
+        - name: is_saved
+          in: "formData"
+          description: "1: lưu, 0: xóa hồ sơ"
+          required: false
+          type: number
+      responses:
+        200:
+          description: Save job successful
+          examples:
+            Save job successful:
+              code: 200
+              messages: "Save job successful"
+  /saved-job/{id}:
+    get:
+      security:
+        - Bearer: []
+      tags:
+        - "SP311"
+      summary: "Get saved job"
+      operationId: ""
+      consumes:
+        - "application/x-www-form-urlencoded"
+        - "application/json"
+      produces:
+        - "application/json"
+      parameters:
+        - name: id
+          in: "path"
+          description: "user_id"
+          required: true
+          type: integer
+      responses:
+        200:
+          description: Get list saved job successful
+          examples:
+            Get list job saved successful:
+              code: 200
+              data:
+                messages: "Get list job saved successful"
+                profile_saved:
+                  - id: 1
+                    user_id: 30
+                    saved_job_id: 1
+                  - id: 2
+                    user_id: 30
+                    saved_job_id: 2
+    delete:
+      security:
+        - Bearer: []
+      tags:
+        - "SP311"
+      summary: "Delete saved job"
+      operationId: ""
+      consumes:
+        - "application/x-www-form-urlencoded"
+        - "application/json"
+      produces:
+        - "application/json"
+      parameters:
+        - name: id
+          in: "path"
+          description: "Id saved-job"
+          required: true
+          type: integer
+      responses:
+        200:
+          description: Delete saved job successful
+          examples:
+            Delete saved job successful:
+              code: 200
+              data:
+                messages: "Delete saved job successful"
+                saved_job_id: 3
+  /profile-of-me/{id}:
+    get:
+      security:
+        - Bearer: []
+      tags:
+        - "SP321"
+      summary: "Get saved job"
+      operationId: ""
+      consumes:
+        - "application/x-www-form-urlencoded"
+        - "application/json"
+      produces:
+        - "application/json"
+      parameters:
+        - name: id
+          in: "path"
+          description: "id của user"
+          required: true
+          type: integer
+      responses:
+        200:
+          description: Get list profile of me successful
+          examples:
+            Get list profile of me successful:
+              code: 200
+              data:
+                mesage: "Get list profile of me successful"
+                profile:
+                  id: 7,
+                  user:
+                    id_users: 8
+                    loaitk: 0
+                    vitien: 0
+                    name: "Nguyen Tien Dung"
+                    username: "admin"
+                    email: "cphoanggia2010@gmail.com"
+                    telephone: "+84904904437"
+                    lastvisit: 1539250961
+                    active: 1
+                    super: 1
+                    address: "Ha Noi"
+                    address_t: ""
+                    address_h: ""
+                    address_x: ""
+                    dc_nhaxuong: ""
+                    dc_vanphong: ""
+                    yahoo: "binh_mczk"
+                    linkfb: ""
+                    linktw: ""
+                    image: ""
+                    avatar: ""
+                    cover: ""
+                    showed: 1
+                    linhvucsanxuat: ""
+                    filebaogia: ""
+                    idFB: ""
+                    idGG: ""
+                    experience: ""
+                    skill: ""
+                    code_intro: ""
+                    code_present: ""
+                    point: 0
+                    rate: 0
+                    service: ""
+                    identity_card: ""
+                    type_temp: ""
+                  type: 0
+                  experience:
+                    id: 1
+                    name: "dgdgdgdg"
+                    created_at: ""
+                    updated_at: ""
+
+                  position: "cuong"
+                  current_level:
+                    id: 1,
+                    name: "dgdggdgd"
+                    created_at: null
+                    updated_at: null
+                  desired_level:
+                    id: 1
+                    name: "dgdggdgd"
+                    created_at: null
+                    updated_at: null
+                  current_salary: 1000
+                  desired_salary: 45545454
+                  lat_lng_current: null
+                  address_current: null
+                  city_current: null
+                  lat_lng_desired: null
+                  address_desired: null
+                  city_desired: null
+                  skill: null
+                  image_product: []
+                  image_forte: []
+                  image_drawing: []
+                  ability_overtime:
+                    id: 1,
+                    name: "Dưới 5 buổi/tháng"
+                  ability_manage: 1
+                  ability_workfar: 1
+                  service:
+                    id: 1
+                    name: "dgdgdg"
+                    description: "dgdgdghdgdgh"
+                    created_at: null
+                    updated_at: null
+                    pivot:
+                      profile_id: 8
+                      service_id: 1
+  /profile/<id>:
+    put:
+      security:
+        - Bearer: []
+      tags:
+        - "SP321"
+      summary: "Update profile"
+      operationId: ""
+      consumes:
+        - "application/x-www-form-urlencoded"
+        - "application/json"
+      produces:
+        - "application/json"
+      parameters:
+        - name: id
+          in: "path"
+          description: "Id profile"
+          required: true
+          type: integer
+        - name: position
+          in: "formData"
+          description: "Vị trí mong muốn"
+          required: false
+          type: string
+        - name: current_level_id
+          in: "formData"
+          description: "Cấp bậc hiện tại"
+          required: false
+          type: integer
+        - name: desired_level_id
+          in: "formData"
+          description: "Cấp bậc mong muốn"
+          required: false
+          type: integer
+        - name: service_id
+          in: "formData"
+          description: "Ngành nghề mong muốn"
+          required: false
+          type: array
+          items:
+            type: string
+        - name: current_workplace
+          in: "formData"
+          description: "Chỗ làm việc hiện tại"
+          required: false
+          type: array
+          items:
+            type: string
+        - name: desired_workplace
+          in: "formData"
+          description: "Nơi làm việc mong muốn"
+          required: false
+          type: array
+          items:
+            type: string
+        - name: experience_id
+          in: "formData"
+          description: "Số năm kinh nghiệm"
+          required: false
+          type: integer
+        - name: current_salary
+          in: "formData"
+          description: "Mức lương hiện tại"
+          required: false
+          type: integer
+        - name: desired_salary
+          in: "formData"
+          description: "Mức lương mong muốn"
+          required: false
+          type: integer
+        - name: skill
+          in: "formData"
+          description: "Kỹ năng sở trường"
+          required: false
+          type: string
+        - name: "image_product"
+          in: "formData"
+          description: "Hình ảnh sản phẩm đã làm"
+          required: false
+          type: array
+          items:
+            type: string
+        - name: "image_forte"
+          in: "formData"
+          description: "Sản phẩm sở trường"
+          required: false
+          type: array
+          items:
+            type: string
+        - name: "image_drawing"
+          in: "formData"
+          description: "Bản vẽ kỹ thuật đã làm "
+          required: false
+          type: array
+          items:
+            type: string
+        - name: ability_overtime_id
+          in: "formData"
+          description: "Khả năng tăng ca 0: Dưới 5 buổi/tháng|1: 5-10 buổi/tháng| 2: > 10 buổi/tháng"
+          required: false
+          type: integer
+        - name: ability_manage
+          in: "formData"
+          description: "Khả năng quản lý nhóm 0: Không|1: Có"
+          required: false
+          type: integer
+        - name: ability_workfar
+          in: "formData"
+          description: "Khả năng công tác xa  0: Không|1: Có"
+          required: false
+          type: integer
+      responses:
+        200:
+          description: Update profile successful
+          examples:
+            Update profile successful:
+              code: 200
+              data:
+                mesage: "Update profiles successful"
+                profile:
+                  id: 7,
+                  user:
+                    id_users: 8
+                    loaitk: 0
+                    vitien: 0
+                    name: "Nguyen Tien Dung"
+                    username: "admin"
+                    email: "cphoanggia2010@gmail.com"
+                    telephone: "+84904904437"
+                    lastvisit: 1539250961
+                    active: 1
+                    super: 1
+                    address: "Ha Noi"
+                    address_t: ""
+                    address_h: ""
+                    address_x: ""
+                    dc_nhaxuong: ""
+                    dc_vanphong: ""
+                    yahoo: "binh_mczk"
+                    linkfb: ""
+                    linktw: ""
+                    image: ""
+                    avatar: ""
+                    cover: ""
+                    showed: 1
+                    linhvucsanxuat: ""
+                    filebaogia: ""
+                    idFB: ""
+                    idGG: ""
+                    experience: ""
+                    skill: ""
+                    code_intro: ""
+                    code_present: ""
+                    point: 0
+                    rate: 0
+                    service: ""
+                    identity_card: ""
+                    type_temp: ""
+                  type: 0
+                  experience:
+                    id: 1
+                    name: "dgdgdgdg"
+                    created_at: ""
+                    updated_at: ""
+
+                  position: "cuong"
+                  current_level:
+                    id: 1,
+                    name: "dgdggdgd"
+                    created_at: null
+                    updated_at: null
+                  desired_level:
+                    id: 1
+                    name: "dgdggdgd"
+                    created_at: null
+                    updated_at: null
+                  current_salary: 1000
+                  desired_salary: 45545454
+                  lat_lng_current: null
+                  address_current: null
+                  city_current: null
+                  lat_lng_desired: null
+                  address_desired: null
+                  city_desired: null
+                  skill: null
+                  image_product: []
+                  image_forte: []
+                  image_drawing: []
+                  ability_overtime:
+                    id: 1,
+                    name: "Dưới 5 buổi/tháng"
+                  ability_manage: 1
+                  ability_workfar: 1
+                  service:
+                    id: 1
+                    name: "dgdgdg"
+                    description: "dgdgdghdgdgh"
+                    created_at: null
+                    updated_at: null
+                    pivot:
+                      profile_id: 8
+                      service_id: 1
+    delete:
+      security:
+        - Bearer: []
+      tags:
+        - "SP321"
+      summary: "Delete profile"
+      operationId: ""
+      consumes:
+        - "application/x-www-form-urlencoded"
+        - "application/json"
+      produces:
+        - "application/json"
+      parameters:
+        - name: id
+          in: "path"
+          description: "Id profile"
+          required: true
+          type: integer
+      responses:
+        200:
+          description: Delete profile successful
+          examples:
+            Delete profile successful:
+              code: 200
+              messages: "Delete profile successful"
+  /comments:
+    post:
+      security:
+        - Bearer: []
+      tags:
+        - "SP313"
+      summary: "Comments"
+      operationId: ""
+      consumes:
+        - "application/x-www-form-urlencoded"
+        - "application/json"
+      produces:
+        - "application/json"
+      parameters:
+        - name: contents
+          in: "formData"
+          description: "nội dung bình luận"
+          required: true
+          type: string
+        - name: rate
+          in: "formData"
+          description: "số sao"
+          required: true
+          type: integer
+        - name: user_send
+          in: "formData"
+          description: "id của người bình luận"
+          required: true
+          type: integer
+        - name: user_receive
+          in: "formData"
+          description: "id của người được bình luận"
+          required: true
+          type: integer
+        - name: profile_id
+          in: "formData"
+          description: "profile id"
+          required: false
+          type: integer
+        - name: recruitment_id
+          in: "formData"
+          description: "recruitment id"
+          required: false
+          type: integer
+      responses:
+        200:
+          description: Comment successful
+          examples:
+            Comment successful:
+              code: 200
+              comment:
+                id: 1
+                contents: "làm tốt"
+                rate: 1
+                user_send: 1
+                user_receive: 2
+                profile_id: null
+                recruitment_id: "22"
+                created_at: "2018-12-17 10:52:01"
+                updated_at: "2018-12-17 10:52:01"
+  /comments/{id}:
+    get:
+      tags:
+        - "SP313"
+      summary: "Get comment"
+      operationId: ""
+      consumes:
+        - "application/x-www-form-urlencoded"
+        - "application/json"
+      produces:
+        - "application/json"
+      parameters:
+        - name: id
+          in: "path"
+          description: "id của người được bình luận"
+          required: true
+          type: integer
+      responses:
+        200:
+          description: Get list comment successful
+          examples:
+            Get list comment successful:
+              code: 200
+              data:
+                "messages": "Get list comment successful"
+                "comment":
+
+                        "id": 1
+                        "contents": "lam an khong ra sao ca"
+                        "rate": 1
+                        "user_send": 29
+                        "user_receive": 30
+                        "profile_id": 88
+                        "recruitment_id": null
+                        "created_at": "2018-12-20 17:41:35"
+                        "updated_at": "2018-12-20 17:41:35"
+                        "user":
+                            "id_users": 29
+                            "loaitk": 0
+                            "vitien": 0
+                            "name": "Ä‘Ã o thu trang"
+                            "username": "trangdt93"
+                            "email": "tieudanhtuoc@gmail.com"
+                            "telephone": "01663038271"
+                            "lastvisit": 1540887088
+                            "active": 1
+                            "super": 0
+                            "address": null
+                            "address_t": ""
+                            "address_h": ""
+                            "address_x": ""
+                            "dc_nhaxuong": null
+                            "dc_vanphong": null
+                            "yahoo": null
+                            "linkfb": null
+                            "linktw": null
+                            "image": null
+                            "avatar": null
+                            "cover": null
+                            "showed": 1
+                            "linhvucsanxuat": ""
+                            "filebaogia": ""
+                            "idFB": ""
+                            "idGG": null
+                            "code_intro": null
+                            "code_present": null
+                            "service": null
+                            "identity_card": null
+                            "type_temp": null
+                            "point": 0
+                            "rate": 0
+                            "gender": null
+                            "date_of_birth": null
+                        "profile":
+                            "id": 88
+                            "user_id": 742
+                            "type": 2
+                            "position": "tìm việc làm sửa chữa đồ gia dụng"
+                            "current_level_id": null
+                            "desired_level_id": null
+                            "lat_lng_current": "20.471331, 105.947990"
+                            "address_current": "Thanh Liêm District, Hà Nam, Vietnam"
+                            "city_current": "ha nam"
+                            "lat_lng_desired": "21.016346, 105.833670"
+                            "address_desired": "Đống Đa, Hanoi, Vietnam"
+                            "city_desired": "Thành Phố Hồ Chí Minh"
+                            "experience_id": 1
+                            "current_salary": 7000000
+                            "desired_salary": 15000000
+                            "skill": "có khả năng làm việc chăm chỉ blah blah"
+                            "image_product": "[]"
+                            "image_forte": "[]"
+                            "image_drawing": "[]"
+                            "ability_overtime_id": 1
+                            "ability_manage": 1
+                            "ability_workfar": 1
+                            "status_notice": 0
+                            "created_at": "2018-12-13 07:39:32"
+                            "updated_at": "2018-12-13 07:39:32"
+                        "recruitment": null
+  /notice-worker:
+    get:
+      tags:
+        - "SP318"
+      summary: "send notice"
+      operationId: ""
+      consumes:
+        - "application/x-www-form-urlencoded"
+        - "application/json"
+      produces:
+        - "application/json"
+      responses:
+        200:
+          description: "type:6      -   7 ngày"
+          examples:
+            Send notification successful:
+              code: 200
+              data:
+                messages: "Send notification successful"
+  /notice:
+    get:
+      tags:
+        - "Notice when call"
+      summary: "send notice"
+      operationId: ""
+      consumes:
+        - "application/x-www-form-urlencoded"
+        - "application/json"
+      produces:
+        - "application/json"
+      responses:
+        200:
+          description: "type:4      -   1 ngày"
+          examples:
+            Send notification successful:
+              code: 200
+              data:
+                messages: "Send notification successful"
+  /notice-have-worker:
+    get:
+      tags:
+        - "SP308"
+      summary: "send notice"
+      operationId: ""
+      consumes:
+        - "application/x-www-form-urlencoded"
+        - "application/json"
+      produces:
+        - "application/json"
+      responses:
+        200:
+          description: "type:3"
+          examples:
+            Send notification successful:
+              code: 200
+              data:
+                messages: "Send notification successful"
+
+externalDocs:
+  description: "Find out more about Swagger"
+  url: "http://swagger.io"
+# Added by API Auto Mocking Plugin
+# host: localhost:8000
+# basePath: /
+# schemes:
+# - http
+# Added by API Auto Mocking Plugin
+host: virtserver.swaggerhub.com
+basePath: /thangbeo/register_user/1.0.0
+schemes:
+  - https
+  - http
